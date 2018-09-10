@@ -28,10 +28,10 @@ public class HelloWorld {
 	/**
 	 * Performs and returns an equation for two given integers and an operator
 	 *
-	 * @param  int the first integer to have in the operation (e.g. the dividend if operator was /)
-	 * @param  int the second integer to have in the operation (e.g. the divisor if operator was /)
-	 * @param  String the operator that should be used e.g. "*"
-	 * @return String it has the equation and its result, as well as a joke
+	 * @param  one the first integer to have in the operation (e.g. the dividend if operator was /)
+	 * @param  two the second integer to have in the operation (e.g. the divisor if operator was /)
+	 * @param  operator the operator that should be used e.g. "*"
+	 * @return a String with the equation and its result, as well as a joke
 	 */
 	public static String returnOperation(int one, int two, String operator) {
 		double result = 0;
