@@ -20,7 +20,7 @@ import java.io.Writer;
  
  	public static void main (String[] args) {
  		String txtFileName = "output.txt";
- 		File file = new File(txtFileName);
+ 		File file1 = new File(txtFileName);
  		
  		String sampleFile = "Sample.java";
  		
@@ -33,14 +33,11 @@ import java.io.Writer;
 		}
 		
  		PrintWriter output = new PrintWriter(writer);
- 		
- 		
- 		FileReader fileReader;
+ 
 		try {
-			fileReader = new FileReader(sampleFile);
-			BufferedReader reader = new BufferedReader(fileReader);
+			StringBuffer str = loadFile(sampleFile);
 			
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			output.print("Part 1: Unable to Open File");
@@ -48,7 +45,22 @@ import java.io.Writer;
  		
  		output.close();
  		
- 		
+ 	}
+ 	
+ 	public static StringBuffer loadFile(String pathname) throws IOException {
+ 	
+ 		File file = new File(pathname);
+ 		StringBuffer strBuffer = new StringBuffer((int) file.length());
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+		
+		int ch = 0;
+		while((ch = reader.read())!= -1)
+			strBuffer.append((char) ch);
+		
+		reader.close();
+		
+		return strBuffer;
+		
  	}
  
  }
