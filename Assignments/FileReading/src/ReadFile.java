@@ -1,4 +1,7 @@
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,12 +19,14 @@ import java.io.Writer;
  public class ReadFile {
  
  	public static void main (String[] args) {
- 		String fileName = "output.txt";
- 		File file = new File(fileName);
+ 		String txtFileName = "output.txt";
+ 		File file = new File(txtFileName);
+ 		
+ 		String sampleFile = "Sample.java";
  		
  		Writer writer = null;
 		try {
-			writer = new FileWriter(fileName, false);
+			writer = new FileWriter(txtFileName, false);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,7 +34,17 @@ import java.io.Writer;
 		
  		PrintWriter output = new PrintWriter(writer);
  		
- 		output.print("Let us see");
+ 		
+ 		FileReader fileReader;
+		try {
+			fileReader = new FileReader(sampleFile);
+			BufferedReader reader = new BufferedReader(fileReader);
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			output.print("Part 1: Unable to Open File");
+		}
  		
  		output.close();
  		
