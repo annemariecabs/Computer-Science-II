@@ -94,9 +94,9 @@ public class ReadFile {
 			StringBuffer str3 = loadFile(files[2]);
 			StringBuffer str4 = new StringBuffer("");
 			
-			if(files[3].equals(""))
+			if(! files[3].equals("")) 
 				str4 = loadFile(files[3]);
-			
+
 			str3 = fillInStory(str3, str4);
 			
 			output.println(str3);
@@ -166,6 +166,9 @@ public class ReadFile {
 		String tempStr = "";
 		char[] chars = str.toCharArray();
 		
+		String str2 = new String(strBuffer2);
+		char[] chars2 = str2.toCharArray();
+		
 		if(strBuffer2.equals("")) {
 			for(int i = 0; i < str.length(); i++) {
 				if(chars[i] == '<') {
@@ -194,8 +197,39 @@ public class ReadFile {
 		
 		//Add reading fourth file and putting it in fillIns HOW DO I ASSUME FORMATTING
 		else {
+			for(int i = 0; i < str.length(); i++) {
+				if(chars[i] == '<') {
+					for(int j = i + 1; j < str.length(); j++) {
+						if(chars[j] =='>') {
+							Integer[] tempInts = new Integer[2];
+							tempInts[0] = i;
+							tempInts[1] = j;
+
+							bracketIndex.add(tempInts);
+							i = j + 1;
+							break;
+							
+						}
+							
+					}
+					
+				}	
+				
+			}
 			
+			int beginIndex = 0;
 			
+			for(int m = 0; m < chars2.length; m++) {
+				if(chars2[m] == '\n') {
+					fillIns.add(str2.substring(beginIndex, m));
+					
+					beginIndex = m + 1; 
+				}
+			}
+			
+			for (int b = bracketIndex.size(); b > fillIns.size(); b--) {
+				fillIns.add(b - 1, "(no one wanted to madlib this word in aka a sad day for madlibs)");
+			}
 		}
 		
 		String newStr = "";
