@@ -73,9 +73,11 @@ public class ReadFile {
 
 		try {
 			str2 = loadFile(files[1]);
-
-			//BUT WITH CLASS NAME IT WON't BE SAME
-			if(str.equals(str2)) 
+			
+			String one = new String(str);
+			String two = new String(str2);
+			
+			if(one.equals(two)) 
 				output.println("Files Identical");
 			else
 				output.println("Files Not Identical");
@@ -160,7 +162,7 @@ public class ReadFile {
 	public static StringBuffer fillInStory(StringBuffer strBuffer, StringBuffer strBuffer2) {
 		ArrayList<String> fillIns = new ArrayList<String>();
 		ArrayList<Integer[]> bracketIndex = new ArrayList<Integer[]>();
-		
+
 		keyboard = new Scanner(System.in);
 		String str = new String(strBuffer);
 		String tempStr = "";
@@ -169,13 +171,16 @@ public class ReadFile {
 		String str2 = new String(strBuffer2);
 		char[] chars2 = str2.toCharArray();
 		
-		if(strBuffer2.equals("")) {
+		if(str2.equals("")) {
 			for(int i = 0; i < str.length(); i++) {
 				if(chars[i] == '<') {
 					for(int j = i + 1; j < str.length(); j++) {
 						if(chars[j] =='>') {
 							System.out.println("Please enter a " + str.substring(i + 1, j));
 							tempStr = keyboard.nextLine();
+							
+							if(tempStr.equals(""))
+								tempStr = "[no madlib available]";
 							
 							Integer[] tempInts = new Integer[2];
 							tempInts[0] = i;
@@ -221,14 +226,20 @@ public class ReadFile {
 			
 			for(int m = 0; m < chars2.length; m++) {
 				if(chars2[m] == '\n') {
-					fillIns.add(str2.substring(beginIndex, m));
+					if(! "".equals(str.substring(beginIndex, m)))
+							fillIns.add(str2.substring(beginIndex, m));
 					
 					beginIndex = m + 1; 
 				}
 			}
 			
-			for (int b = bracketIndex.size(); b > fillIns.size(); b--) {
-				fillIns.add(b - 1, "(no one wanted to madlib this word in aka a sad day for madlibs)");
+			if(fillIns.size() != 0 && ! "".equals(str2.substring(beginIndex)))
+				fillIns.add(str2.substring(beginIndex));
+			
+			int tempSize = fillIns.size();
+			
+			for (int b = bracketIndex.size(); b > tempSize; b--) {
+				fillIns.add("[no madlib available]");
 			}
 		}
 		
@@ -251,9 +262,11 @@ public class ReadFile {
 			}	
 		}
 		
-		newStr += str.substring(bracketIndex.get(bracketIndex.size() - 1)[1] + 1);
+		if(bracketIndex.size() > 0)
+			newStr += str.substring(bracketIndex.get(bracketIndex.size() - 1)[1] + 1);
 		
-		strBuffer = new StringBuffer(newStr);
+		if(! newStr.equals(""))
+			strBuffer = new StringBuffer(newStr);
 		
 		return strBuffer;
 	}

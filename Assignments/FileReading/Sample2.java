@@ -5,7 +5,7 @@
 * @author annemariecaballero
 */
 
-public class Sample {
+public class Sample2 {
 	
 	public static void main(String[] args) {
 		System.out.println("Just needed this file to do something");
