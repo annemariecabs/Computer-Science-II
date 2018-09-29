@@ -12,7 +12,7 @@ import java.util.Scanner;
 /** 
  * This class will read Java files and then determine
  * whether braces are balanced, files are identical, and 
- * will allow the user to write a story.
+ * will allow the user to write a Mad Libs story.
  *
  * @author annemariecaballero
  *
@@ -35,6 +35,14 @@ public class ReadFile {
 
 	}
 	
+	/**
+	 * Loads the files and performs the three main functionalities:
+	 * 		1. Checking if a file has balanced braces
+	 * 		2. Checking if two files are identical
+	 * 		3. Filling in provided spots in a story
+	 * 
+	 * @param files a String[] that holds the names of all the files to be used
+	 */
 	public static void readAndCheck(String[] files) {
 		
 		String txtFileName = "output.txt";
@@ -60,11 +68,10 @@ public class ReadFile {
 				output.println("Braces Not Balanced");
 
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			output.println("Part 1: Unable to Open File");
 			output.close();
-			System.exit(1); //closes program b/c program is unsuccessful
+			System.exit(1); //closes program because program is unsuccessful as file cannot be found
 		}
 
 		output.println("");
@@ -83,11 +90,10 @@ public class ReadFile {
 				output.println("Files Not Identical");
 
 		} catch (FileNotFoundException e) { 
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			output.println("Part 2: Unable to Open File");
 			output.close();
-			System.exit(1); //closes program b/c program is unsuccessful
+			System.exit(1);  //closes program because program is unsuccessful as file cannot be found
 		}
 
 		output.println("");
@@ -105,11 +111,10 @@ public class ReadFile {
 
 
 		} catch (FileNotFoundException e) { 
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			output.println("Part 3: Unable to Open File");
 			output.close();
-			System.exit(1); //closes program b/c program is unsuccessful
+			System.exit(1);  //closes program because program is unsuccessful as file cannot be found
 		}
 
 		output.close();
@@ -117,7 +122,18 @@ public class ReadFile {
 		
 	}
 
-	//Received a lot of help from the Java Methods book for this method
+	/**
+	 * 
+	 * This method reads a file by character using BufferedReader.
+	 * Returns the file's contents as a StringBuffer.
+	 * 
+	 * This method was taken (almost completely the same) from pg.415 of the Java Methods book by Maria and Gary Litvin.
+	 * 
+	 * @param pathname the name of the file to read
+	 * @return a StringBuffer with the contents of the file
+	 * @throws FileNotFoundException occurs if the file, with name pathname, cannot be found
+	 * 
+	 */
 	public static StringBuffer loadFile(String pathname) throws FileNotFoundException {
 
 		File file = new File(pathname);
@@ -130,7 +146,6 @@ public class ReadFile {
 				strBuffer.append((char) ch);
 			reader.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -138,6 +153,14 @@ public class ReadFile {
 
 	}
 
+	/**
+	 * 
+	 * Checks a StringBuffer object to see if all open braces within the StringBuffer
+	 * have an accompanying closing curly brace.
+	 * 
+	 * @param strB the StringBuffer for whose curly brace pairs are to be checked
+	 * @return true, if the curly braces, if any, are all in pairs; false, otherwise.
+	 */
 	public static boolean bracesBalanced(StringBuffer strB) {
 		String str = new String(strB);
 		char[] chars = str.toCharArray();
@@ -159,6 +182,20 @@ public class ReadFile {
 
 	}
 	
+	/**
+	 * 
+	 * Returns a StringBuffer that has the original story with all the phrases surrounded by
+	 * <> as well as the <> removed. The returned StringBuffer will either be filled with user
+	 * response or with words from an already-provided file.
+	 * 
+	 * @param strBuffer  the name of the first file, which contains the story, with parts to 
+	 * 					 be filled in
+	 * @param strBuffer2 a list of words to use to fill in the areas between <> in the story.
+	 * 					 if there is no already-provided file where this list came from
+	 * 					 this will be equal to "".
+	 * @return a StringBuffer that has the original story but with the new words filled in
+	 * 		   in place of the <> and phrases between them.
+	 */
 	public static StringBuffer fillInStory(StringBuffer strBuffer, StringBuffer strBuffer2) {
 		ArrayList<String> fillIns = new ArrayList<String>();
 		ArrayList<Integer[]> bracketIndex = new ArrayList<Integer[]>();
@@ -200,7 +237,6 @@ public class ReadFile {
 			}
 		}
 		
-		//Add reading fourth file and putting it in fillIns HOW DO I ASSUME FORMATTING
 		else {
 			for(int i = 0; i < str.length(); i++) {
 				if(chars[i] == '<') {
