@@ -37,9 +37,9 @@ public class ReadFile {
 	
 	/**
 	 * Loads the files and performs the three main functionalities:
-	 * 		1. Checking if a file has balanced braces
-	 * 		2. Checking if two files are identical
-	 * 		3. Filling in provided spots in a story
+	 * 		1) Checking if a file has balanced braces
+	 * 		2) Checking if two files are identical
+	 * 		3) Filling in provided spots in a story
 	 * 
 	 * @param files a String[] that holds the names of all the files to be used
 	 */
