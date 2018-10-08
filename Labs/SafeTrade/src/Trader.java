@@ -1,33 +1,45 @@
 public class Trader implements Comparable<Trader> {
 	
+	Brokerage brkg;
+	String screenName;
+	String password;
+	
+	public Trader(Brokerage brokerage, String name, String passwd) {
+		brkg = brokerage;
+		screenName = name;
+		password = passwd;
+		
+	}
+	
 	public int compareTo(Trader other) {
-		int result = 0;
-		
-		
-		return result;
+		return screenName.compareToIgnoreCase(other.getName()); 
 		
 	}
 	
 	public boolean equals(Object other) {
 		
-		return false;
+		return screenName.equalsIgnoreCase(other.getName());
 		
 	}
 
 	public String getName() {
 		
-		return "";
+		return screenName;
 		
 	}
 	
 	public String getPassword() {
-		return null;
+		return password;
 		
 	}
+	
+	//NEED TO DO
 	public void getQuote(String symbol) {
 		
 	}
 	
+	
+	//NEED TO DO
 	public boolean hasMessages() {
 		return false;
 		
