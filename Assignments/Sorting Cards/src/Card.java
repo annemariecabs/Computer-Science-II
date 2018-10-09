@@ -55,7 +55,7 @@ public class Card implements Comparable<Card> {
 	}
 	
 	public String toString() {
-		return getRankStr() + getSuit();
+		return getRankStr() + " of " + getSuit();
 	}
 
 	public String getRankStr() {
@@ -93,7 +93,7 @@ public class Card implements Comparable<Card> {
 	}
 	
 	public int getSuitInt() {
-		switch(suit) {
+		switch(suit.toLowerCase()) {
 		case "clubs":
 			return 0;
 		case "diamonds":

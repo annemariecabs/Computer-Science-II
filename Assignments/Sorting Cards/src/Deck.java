@@ -7,25 +7,28 @@ public class Deck {
 		cards = new Card[52];
 		
 		int i = 0; //index of card at that time in the loop
-		for(int s = 0; s < 4; s++, i++)
+		for(int s = 0; s < 4; s++)
 			for(int r = 1; r < 14; r++, i++)
 				cards[i] = new Card(s, r);
 		
-		topCard = i;
+		topCard = 51;
 	}
 	
 	public Deck(boolean sorted) {
 		cards = new Card[52];
 		
 		int i = 0; //index of card at that time in the loop
-		for(int s = 0; s < 4; s++, i++)
-			for(int r = 1; r < 14; r++, i++)
+		for(int s = 0; s < 4; s++)
+			for(int r = 1; r < 14; r++, i++) 
 				cards[i] = new Card(s, r);
+			
+				
+		topCard = 51;
 		
 		if(! sorted)
 			this.shuffle();
 		
-		topCard = cards.length - 1;
+		
 	}
 	
 	public Deck(Card[] hands) {
@@ -38,28 +41,50 @@ public class Deck {
 		return cards;
 	}
 	
+	public int getTopCard() {
+		return topCard;
+	}
+	
 	public void shuffle() {
-
+		
+		int originalLength = cards.length;
 		Card[] temp = new Card[cards.length];
 		
-		for(int i = 0; i < cards.length; i++) {
+		for(int i = 0; i < originalLength; i++) {
 			temp[i] = this.pick();
 		}
 		
 		cards = temp;
+		topCard = originalLength - 1;
 		
 	}
 	
+	
+	//TODO: FIX
 	public String toString() {
+		String result = "";
 		
+		if(cards.length == 52) {
+			
+			
+		}
+		else {
+			for (int i = 0; i < cards.length; i++) {
+				result = cards[i].toString() + "\n";
+			}
+		}
 		
+		return result;
 	}
 	
 	public boolean equals(Deck other) {
-		Card[] cards2 = other.getCards()
+		Card[] cards2 = other.getCards();
+		
+		if(topCard != other.getTopCard())
+			return false;
 		
 		for(int c = 0; c < cards.length; c++) {
-			if(! c.equals(other2[c])
+			if(! cards[c].equals(cards2[c]))
 					return false;
 		}
 		
@@ -90,8 +115,9 @@ public class Deck {
 		for(int i = 0, j = 0; i < cards.length; i++, j++) {
 			if(i != random)
 				temp[j] = cards[i];
-			else
-				i++;
+			else {
+				j--;
+			}
 		}
 		
 		cards = temp;
@@ -102,16 +128,37 @@ public class Deck {
 	}
 	
 	public void selectionSort() {
-		int min = cards[0];
+		int min = 0;
+		Card temp = null;
 		
-		for(int a = 1; a < cards.length; a++) {
+		for(int a = 0; a < cards.length; a++) {
 			
-			if(cards[a] < min)
-				min = cards[a];
+			min = a;
+			
+			for(int b = a; b < cards.length; b++) {
+				
+				if(cards[min].compareTo(cards[b]) == 1)
+					min = b;
+				
+			}
+			
+			temp = cards[a];
+			cards[a] = cards[min];
+			cards[min] = temp;
 		}
 	}
 	
 	public void mergeSort() {
+		cards = merge(cards);
+		
+	}
+	
+	private static Card[] merge (Card[] temps) {
+		int half = temps.length/2;
+		
+		
+		
+		return temps;
 		
 	}
 	

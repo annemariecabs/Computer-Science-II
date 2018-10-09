@@ -1,7 +1,7 @@
 import java.util.Comparator;
 
 //TODO: Javadocs, include this is modeled off of book
-//TODO: should I have ascend??
+
 public class CardComparator implements Comparator<Card> {
 	
 	private boolean ascend;
