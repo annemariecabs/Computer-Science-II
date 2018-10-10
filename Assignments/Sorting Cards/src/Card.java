@@ -14,7 +14,6 @@ public class Card implements Comparable<Card> {
 
 	/**
 	 * Constructs a default card (the Ace of Clubs)
-	 * 
 	 */
 	public Card () {
 		suit = "Clubs";
