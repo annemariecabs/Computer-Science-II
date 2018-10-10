@@ -9,10 +9,10 @@ import java.util.Arrays;
 public class Test {
 	
 	public static void main(String[] args) {
-		Deck deck = new Deck();
-		Deck deck2 = new Deck(true);
+		Deck deck2 = new Deck(false);
+		deck2.mergeSort();
 		
-		System.out.println(deck.equals(deck2));
+		System.out.println(deck2);
 		
 		
 	}

@@ -153,7 +153,7 @@ public class Deck {
 	}
 	
 	/*
-	 * Checks if this Card is equal to the other Card
+	 * Checks if this Deck is equal to the other Deck. Order matters in determining equality.
 	 * 
 	 * @param other the Deck object that this is being checked against
 	 * @return true, if this is equal to other; false, if this is not equal to other
@@ -272,7 +272,7 @@ public class Deck {
 		
 		for(int i = 0; i < half; i++) {
 			cards1[i] = temps[i];
-			cards2[i + half] = temps[i + half];
+			cards2[i] = temps[i + half];
 		}
 		
 		cards1 = mSort(cards1);
@@ -285,28 +285,70 @@ public class Deck {
 	
 	private static Card[] merge(Card[] cards1, Card[] cards2) {
 		
-		Card[] cards3;
+		Card[] cards3 = new Card[cards1.length + cards2.length];
+		int cardIndex = 0;;
 		
 		while(cards1.length > 0 || cards2.length > 0) {
-			if(cards1[0] > cards2[0]) {
-				cards3[cards3.length - 1] = cards2[0];
+			if(cards1[0].compareTo(cards2[0]) == 1) {
+				cards3[cardIndex] = cards2[0];
+				cardIndex++;
 				Card[] temps = new Card[cards2.length - 1];
 				
-				for(int i = 0; i < cards2.length; i++)
-					temps[i] = cards2[i + 1];
+				if(cards2.length != 1) {
+					for(int i = 0; i < cards2.length; i++)
+						temps[i] = cards2[i + 1];
+					
+					cards2 = temps;
+				}
 				
 			}
 			else {
-				cards3[cards3.length - 1] = cards1[0];
+				cards3[cardIndex] = cards1[0];
+				cardIndex++;
 				Card[] temps = new Card[cards1.length - 1];
 				
-				for(int i = 0; i < cards1.length; i++)
-					temps[i] = cards1[i + 1];
+				if(cards1.length != 1) {
+					for(int i = 0; i < cards1.length; i++)
+						temps[i] = cards1[i + 1];
+					
+					cards1 = temps;
+				}
 				
 			}
 		}
 		
+		while(cards1.length > 0) {
+			cards3[cardIndex] = cards2[0];
+			cardIndex++;
+			
+			Card[] temps = new Card[cards1.length - 1];
+				
+			if(cards1.length != 1) {
+				for(int i = 0; i < cards1.length; i++)
+					temps[i] = cards1[i + 1];
+				
+				cards1 = temps;
+			}
+				
+		}
 		
+		while(cards2.length > 0) {
+			cards3[cardIndex] = cards2[0];
+			cardIndex++;
+			
+			Card[] temps = new Card[cards2.length - 1];
+			
+			if(cards2.length != 1) {
+				for(int i = 0; i < cards2.length; i++)
+					temps[i] = cards2[i + 1];
+				
+				cards2 = temps;
+			}
+			
+		}
+		
+		return cards3;
+
 		
 	}
 	
