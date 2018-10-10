@@ -2,13 +2,11 @@ import java.util.Comparator;
 
 
 /**
- * This Comparator is for Card objects, and compares them on the basis of rank.
  * 
- * This Comparator was modeled off the Comparator example from pg.384 of the Java Methods 
- * book by Maria and Gary Litvin.
+ * This Comparator is for Card objects, and compares them on the basis of rank. This Comparator was modeled 
+ * off the Comparator example from pg.384 of the Java Methods book by Maria and Gary Litvin.
  *
  * @author AnneMarie Caballero
- * 
  */
 
 public class CardComparator implements Comparator<Card> {
