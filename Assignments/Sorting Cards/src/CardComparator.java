@@ -16,14 +16,14 @@ public class CardComparator implements Comparator<Card> {
 	
 	private boolean ascend;
 	
-	/*
+	/**
 	 * Constructs a default CardComparator object that can be used to sort Cards in ascending order
 	 */
 	public CardComparator() {
 		ascend = true;
 	}
 	
-	/*
+	/**
 	 * Constructs a default CardComparator object
 	 * 
 	 * @param asc a boolean that if true, indicates to sort cards in an ascending fashion, and if false
@@ -33,7 +33,7 @@ public class CardComparator implements Comparator<Card> {
 		ascend = asc;
 	}
 	
-	/*
+	/**
 	 * Compares two Cards
 	 * 
 	 * @param card1 the first Card to be compared

@@ -12,7 +12,7 @@ public class Card implements Comparable<Card> {
 	//1 = ace, 11 = jack, 12 = queen, 13 = king
 	private int rank;
 
-	/*
+	/**
 	 * Constructs a default card (the Ace of Clubs)
 	 * 
 	 */
@@ -21,7 +21,7 @@ public class Card implements Comparable<Card> {
 		rank = 1;
 	}
 
-	/*
+	/**
 	 * Constructs a Card using two integers
 	 * 
 	 * @param s the value of suit in integer form
@@ -33,7 +33,7 @@ public class Card implements Comparable<Card> {
 
 	}
 	
-	/*
+	/**
 	 * Constructs a Card using two Strings
 	 * 
 	 * @param s the value of suit in String form
@@ -45,7 +45,7 @@ public class Card implements Comparable<Card> {
 
 	}
 	
-	/*
+	/**
 	 * Constructs a Card using a String, for suit, and integer, for rank.
 	 * 
 	 * @param s the value of suit in String form
@@ -56,7 +56,7 @@ public class Card implements Comparable<Card> {
 		rank = r;
 	}
 	
-	/*
+	/**
 	 * Constructs a Card using a integer, for suit, and String, for rank.
 	 * 
 	 * @param s the value of suit in int form
@@ -67,7 +67,7 @@ public class Card implements Comparable<Card> {
 		rank = getRankInt(r);
 	}
 	
-	/*
+	/**
 	 * Returns the suit of a Card (as a String)
 	 * 
 	 * @return the value of Suit as a String
@@ -79,7 +79,7 @@ public class Card implements Comparable<Card> {
 		return suit;
 	}
 
-	/*
+	/**
 	 * Returns the rank of the card (as an integer)
 	 * 
 	 * @return an integer representing the Card's rank 
@@ -88,7 +88,8 @@ public class Card implements Comparable<Card> {
 		return rank;
 	}
 	
-	/*
+	
+	/**
 	 * Returns a String object representing the Card's value e.g. "Nine of Spades".
 	 * 
 	 * @return the value of the Card as a String
@@ -98,7 +99,7 @@ public class Card implements Comparable<Card> {
 		return getRankStr() + " of " + getSuit();
 	}
 	
-	/*
+	/**
 	 * Returns the rank (as a String)
 	 * 
 	 * @return the rank as a String
@@ -137,7 +138,7 @@ public class Card implements Comparable<Card> {
 		
 	}
 	
-	/*
+	/**
 	 * Returns the suit (as an int)
 	 * 
 	 * @return the suit as an integer
@@ -157,8 +158,7 @@ public class Card implements Comparable<Card> {
 		}
 	}
 	
-	/*
-	 * 
+	/**
 	 * Compares two Card objects using both suit and rank
 	 * 
 	 * @param other the Card that this Card is being compared to.
@@ -186,7 +186,7 @@ public class Card implements Comparable<Card> {
 			
 	}
 	
-	/*
+	/**
 	 * Checks if two Cards are equal
 	 * 
 	 * @param other the Card that this Card is being checked for equality with

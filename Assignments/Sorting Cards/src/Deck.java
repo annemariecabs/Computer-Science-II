@@ -10,7 +10,7 @@ public class Deck {
 	private Card[] cards;
 	private int topCard; //index of topCard on deck, last card's index = 0
 	
-	/*
+	/**
 	 * Constructs a default Deck object that holds 52 cards that are sorted.
 	 */
 	public Deck() {
@@ -24,7 +24,7 @@ public class Deck {
 		topCard = 51;
 	}
 	
-	/*
+	/**
 	 * Constructs a Deck object that holds 52 cards.
 	 * 
 	 * @param sorted if true, sorts the Card[], if false, shuffles the Card[]
@@ -46,7 +46,7 @@ public class Deck {
 		
 	}
 	
-	/*
+	/**
 	 * Constructs a Deck object with a Card[]
 	 * 
 	 * @param hands sets the array of Card to the passed array
@@ -57,7 +57,7 @@ public class Deck {
 		topCard = hands.length - 1;
 	}
 	
-	/*
+	/**
 	 * Returns the value of the Card[] that Deck holds
 	 * 
 	 * @return an array of cards that is the value of the cards in the Deck
@@ -66,7 +66,7 @@ public class Deck {
 		return cards;
 	}
 	
-	/*
+	/**
 	 * Returns the index of the top card of the deck
 	 * 
 	 * @return an integer representing the index of the top card of the deck
@@ -75,7 +75,7 @@ public class Deck {
 		return topCard;
 	}
 	
-	/*
+	/**
 	 * Shuffles the card array in the Deck
 	 */
 	public void shuffle() {
@@ -92,7 +92,7 @@ public class Deck {
 		
 	}
 	
-	/*
+	/**
 	 * Returns the String value of the Deck object
 	 * 
 	 * @return a String representation of the Deck. If there is 52 cards, there will be four columns, else
@@ -155,7 +155,7 @@ public class Deck {
 		return result;
 	}
 	
-	/*
+	/**
 	 * Checks if this Deck is equal to the other Deck. Order matters in determining equality.
 	 * 
 	 * @param other the Deck object that this is being checked against
@@ -176,7 +176,7 @@ public class Deck {
 		
 	}
 	
-	/*
+	/**
 	 * Deals a Deck 
 	 * 
 	 * @param numHands an integer that represents the number of hands to be dealt
@@ -203,7 +203,7 @@ public class Deck {
 		return hands;
 	}
 	
-	/*
+	/**
 	 * Returns and removes a random Card from the Deck
 	 * 
 	 * @return a random Card from the Deck
@@ -229,7 +229,7 @@ public class Deck {
 		
 	}
 	
-	/*
+	/**
 	 * Uses the SelectionSort method to sort the Cards in the Deck
 	 */
 	public void selectionSort() {
@@ -253,7 +253,7 @@ public class Deck {
 		}
 	}
 	
-	/*
+	/**
 	 * Uses the MergeSort method to sort the Cards in the Deck. 
 	 * This method uses internal methods that were created using the pseudocode at this address:
 	 * https://www.tutorialspoint.com/data_structures_algorithms/merge_sort_algorithm.htm 
