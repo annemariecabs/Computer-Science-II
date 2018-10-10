@@ -267,13 +267,33 @@ public class Deck {
 		
 		int half = temps.length/2;
 		
-		Card[] cards1 = new Card[half];
-		Card[] cards2 = new Card[half];
+		Card[] cards1;
+		Card[] cards2;
 		
-		for(int i = 0; i < half; i++) {
-			cards1[i] = temps[i];
-			cards2[i] = temps[i + half];
+		if(temps.length%2 == 0) {
+		
+			cards1 = new Card[half];
+			cards2 = new Card[half];
+			
+			for(int i = 0; i < half; i++) {
+				cards1[i] = temps[i];
+				cards2[i] = temps[i + half];
+			}
 		}
+		
+		else {
+		
+			cards1 = new Card[half];
+			cards2 = new Card[half + 1];
+			
+			for(int i = 0; i < half; i++) {
+				cards1[i] = temps[i];
+				cards2[i] = temps[i + half];
+			}
+			
+			cards2[cards2.length - 1] = temps[temps.length - 1];
+		}
+				
 		
 		cards1 = mSort(cards1);
 		cards2 = mSort(cards2);
@@ -288,18 +308,21 @@ public class Deck {
 		Card[] cards3 = new Card[cards1.length + cards2.length];
 		int cardIndex = 0;;
 		
-		while(cards1.length > 0 || cards2.length > 0) {
+		while(cards1.length > 0 && cards2.length > 0) {
 			if(cards1[0].compareTo(cards2[0]) == 1) {
 				cards3[cardIndex] = cards2[0];
 				cardIndex++;
 				Card[] temps = new Card[cards2.length - 1];
 				
 				if(cards2.length != 1) {
-					for(int i = 0; i < cards2.length; i++)
+					for(int i = 0; i < temps.length; i++)
 						temps[i] = cards2[i + 1];
 					
 					cards2 = temps;
 				}
+				
+				else 
+					cards2 = new Card[0];
 				
 			}
 			else {
@@ -308,27 +331,31 @@ public class Deck {
 				Card[] temps = new Card[cards1.length - 1];
 				
 				if(cards1.length != 1) {
-					for(int i = 0; i < cards1.length; i++)
+					for(int i = 0; i < temps.length; i++)
 						temps[i] = cards1[i + 1];
 					
 					cards1 = temps;
 				}
+				else 
+					cards1 = new Card[0];
 				
 			}
 		}
 		
 		while(cards1.length > 0) {
-			cards3[cardIndex] = cards2[0];
+			cards3[cardIndex] = cards1[0];
 			cardIndex++;
 			
 			Card[] temps = new Card[cards1.length - 1];
 				
 			if(cards1.length != 1) {
-				for(int i = 0; i < cards1.length; i++)
+				for(int i = 0; i < temps.length; i++)
 					temps[i] = cards1[i + 1];
 				
 				cards1 = temps;
 			}
+			else
+				cards1 = new Card[0];
 				
 		}
 		
@@ -339,11 +366,13 @@ public class Deck {
 			Card[] temps = new Card[cards2.length - 1];
 			
 			if(cards2.length != 1) {
-				for(int i = 0; i < cards2.length; i++)
+				for(int i = 0; i < temps.length; i++)
 					temps[i] = cards2[i + 1];
 				
 				cards2 = temps;
 			}
+			else
+				cards2 = new Card[0];
 			
 		}
 		
