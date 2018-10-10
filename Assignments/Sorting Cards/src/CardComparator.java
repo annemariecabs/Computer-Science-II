@@ -1,3 +1,6 @@
+import java.util.Comparator;
+
+
 /**
  * This Comparator is for Card objects, and compares them on the basis of rank.
  * 
@@ -7,10 +10,6 @@
  * @author AnneMarie Caballero
  * 
  */
-
-
-import java.util.Comparator;
-
 
 public class CardComparator implements Comparator<Card> {
 	
