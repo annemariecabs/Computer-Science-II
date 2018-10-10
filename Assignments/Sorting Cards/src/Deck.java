@@ -1,8 +1,18 @@
+/**
+ * This class will be used to create Deck objects, which are groups of Cards.
+ *
+ * @author AnneMarie Caballero
+ *
+ */
+
 public class Deck {
 	
 	private Card[] cards;
 	private int topCard; //index of topCard on deck, last card's index = 0
 	
+	/*
+	 * Constructs a default Deck object that holds 52 cards that are sorted.
+	 */
 	public Deck() {
 		cards = new Card[52];
 		
@@ -14,6 +24,11 @@ public class Deck {
 		topCard = 51;
 	}
 	
+	/*
+	 * Constructs a Deck object that holds 52 cards.
+	 * 
+	 * @param sorted if true, sorts the Card[], if false, shuffles the Card[]
+	 */
 	public Deck(boolean sorted) {
 		cards = new Card[52];
 		
@@ -31,20 +46,38 @@ public class Deck {
 		
 	}
 	
+	/*
+	 * Constructs a Deck object with a Card[]
+	 * 
+	 * @param hands sets the array of Card to the passed array
+	 */
 	public Deck(Card[] hands) {
 		cards = hands;
 		
 		topCard = hands.length - 1;
 	}
 	
+	/*
+	 * Returns the value of the Card[] that Deck holds
+	 * 
+	 * @return an array of cards that is the value of the cards in the Deck
+	 */
 	public Card[] getCards() {
 		return cards;
 	}
 	
+	/*
+	 * Returns the index of the top card of the deck
+	 * 
+	 * @return an integer representing the index of the top card of the deck
+	 */
 	public int getTopCard() {
 		return topCard;
 	}
 	
+	/*
+	 * Shuffles the card array in the Deck
+	 */
 	public void shuffle() {
 		
 		int originalLength = cards.length;
@@ -59,24 +92,72 @@ public class Deck {
 		
 	}
 	
-	
-	//TODO: FIX
+	/*
+	 * Returns the String value of the Deck object
+	 * 
+	 * @return a String representation of the Deck. If there is 52 cards, there will be four columns, else
+	 * 		   there will be one column.
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		String result = "";
 		
 		if(cards.length == 52) {
+			int clubIndex = 0;
+			int diamondIndex = 0;
+			int heartIndex = 0;
+			int spadeIndex = 0;
 			
 			
+			Card[] clubs = new Card[13];
+			Card[] diamonds = new Card[13];
+			Card[] hearts = new Card[13];
+			Card[] spades = new Card[13];
+			
+			for(int i = 0; i < cards.length; i++) {
+				if(cards[i].getSuitInt() == 0) {
+					clubs[clubIndex] = cards[i];
+					clubIndex++;
+				}
+				else if(cards[i].getSuitInt() == 1) {
+					diamonds[diamondIndex] = cards[i];
+					diamondIndex++;
+				}
+				else if(cards[i].getSuitInt() == 2) {
+					hearts[heartIndex] = cards[i];
+					heartIndex++;
+				}
+				else if(cards[i].getSuitInt() == 3) {
+					spades[spadeIndex] = cards[i];
+					spadeIndex++;
+				}
+				else {
+					System.out.println("Error has occurred");
+				}
+			}
+			
+			result = "";
+			
+			for(int i = 0; i < 13; i++) {
+				result += clubs[i].toString() + "\t" + diamonds[i].toString() + "\t"
+						+ hearts[i].toString() + "\t" + spades[i].toString() + "\n";
+			}
 		}
 		else {
 			for (int i = 0; i < cards.length; i++) {
-				result = cards[i].toString() + "\n";
+				result += cards[i].toString() + "\n";
 			}
 		}
 		
 		return result;
 	}
 	
+	/*
+	 * Checks if this Card is equal to the other Card
+	 * 
+	 * @param other the Deck object that this is being checked against
+	 * @return true, if this is equal to other; false, if this is not equal to other
+	 */
 	public boolean equals(Deck other) {
 		Card[] cards2 = other.getCards();
 		
@@ -92,13 +173,26 @@ public class Deck {
 		
 	}
 	
+	/*
+	 * Deals a Deck 
+	 * 
+	 * @param numHands an integer that represents the number of hands to be dealt
+	 * @param cardsPerHand an integer that represents the card per hand that is dealt
+	 * @return null, if there are not enough cards for the deal specified; an array of Decks that represents
+	 * 		   the hands dealt
+	 */
 	public Deck[] deal(int numHands, int cardsPerHand) {
 		Deck[] hands = new Deck[numHands];
-		Card[] temp = new Card[cardsPerHand];
+		
+		if(numHands * cardsPerHand > cards.length)
+			return null;
 		
 		for(int i = 0; i < hands.length; i++) {
-			for(int j = 0; j < temp.length; j++) 
-				temp[j] = this.pick(); //TODO: this should be removed from the deck right?
+			Card[] temp = new Card[cardsPerHand];
+			
+			for(int j = 0; j < temp.length; j++)  {
+				temp[j] = this.pick(); 
+			}
 			
 			hands[i] = new Deck(temp); 
 		}
@@ -106,6 +200,11 @@ public class Deck {
 		return hands;
 	}
 	
+	/*
+	 * Returns and removes a random Card from the Deck
+	 * 
+	 * @return a random Card from the Deck
+	 */
 	public Card pick() {
 		int random = (int) (Math.random() * cards.length);
 		
@@ -127,6 +226,9 @@ public class Deck {
 		
 	}
 	
+	/*
+	 * Uses the SelectionSort method to sort the Cards in the Deck
+	 */
 	public void selectionSort() {
 		int min = 0;
 		Card temp = null;
@@ -148,17 +250,63 @@ public class Deck {
 		}
 	}
 	
+	/*
+	 * Uses the MergeSort method to sort the Cards in the Deck. 
+	 * This method uses internal methods that were created using the pseudocode at this address:
+	 * https://www.tutorialspoint.com/data_structures_algorithms/merge_sort_algorithm.htm 
+	 */
 	public void mergeSort() {
-		cards = merge(cards);
+		cards = mSort(cards);
 		
 	}
 	
-	private static Card[] merge (Card[] temps) {
+	private static Card[] mSort (Card[] temps) {
+		
+		if(temps.length == 1)
+			return temps;
+		
 		int half = temps.length/2;
 		
+		Card[] cards1 = new Card[half];
+		Card[] cards2 = new Card[half];
+		
+		for(int i = 0; i < half; i++) {
+			cards1[i] = temps[i];
+			cards2[i + half] = temps[i + half];
+		}
+		
+		cards1 = mSort(cards1);
+		cards2 = mSort(cards2);
+		
+		return merge(cards1, cards2);
+		
+	}
+	
+	
+	private static Card[] merge(Card[] cards1, Card[] cards2) {
+		
+		Card[] cards3;
+		
+		while(cards1.length > 0 || cards2.length > 0) {
+			if(cards1[0] > cards2[0]) {
+				cards3[cards3.length - 1] = cards2[0];
+				Card[] temps = new Card[cards2.length - 1];
+				
+				for(int i = 0; i < cards2.length; i++)
+					temps[i] = cards2[i + 1];
+				
+			}
+			else {
+				cards3[cards3.length - 1] = cards1[0];
+				Card[] temps = new Card[cards1.length - 1];
+				
+				for(int i = 0; i < cards1.length; i++)
+					temps[i] = cards1[i + 1];
+				
+			}
+		}
 		
 		
-		return temps;
 		
 	}
 	

@@ -1,7 +1,7 @@
 /**
  * This class will be used to create Card objects.
  *
- * @annemariecaballero
+ * @author AnneMarie Caballero
  *
  */
 
@@ -12,52 +12,97 @@ public class Card implements Comparable<Card> {
 	//1 = ace, 11 = jack, 12 = queen, 13 = king
 	private int rank;
 
-	//TODO: Should I have 0 mean something for rank??
-
-
+	/*
+	 * Constructs a default card (the Ace of Clubs)
+	 * 
+	 */
 	public Card () {
 		suit = "Clubs";
-		rank = 0;
+		rank = 1;
 	}
 
+	/*
+	 * Constructs a Card using two integers
+	 * 
+	 * @param s the value of suit in integer form
+	 * @param r the value of rank in integer form
+	 */
 	public Card(int s, int r) {
 		suit = getSuitStr(s);
 		rank = r;
 
 	}
-
+	
+	/*
+	 * Constructs a Card using two Strings
+	 * 
+	 * @param s the value of suit in String form
+	 * @param r the value of rank in String form
+	 */
 	public Card(String s, String r) {
 		suit = s.toLowerCase();
 		rank = getRankInt(r);
 
 	}
-
+	
+	/*
+	 * Constructs a Card using a String, for suit, and integer, for rank.
+	 * 
+	 * @param s the value of suit in String form
+	 * @param r the value of rank in int form
+	 */
 	public Card(String s, int r) {
 		suit = s.toLowerCase();
 		rank = r;
 	}
-
+	
+	/*
+	 * Constructs a Card using a integer, for suit, and String, for rank.
+	 * 
+	 * @param s the value of suit in int form
+	 * @param r the value of rank in String form
+	 */
 	public Card(int s, String r) {
 		suit = getSuitStr(s);
 		rank = getRankInt(r);
 	}
-
-
+	
+	/*
+	 * Returns the suit of a Card (as a String)
+	 * 
+	 * @return the value of Suit as a String
+	 */
 	public String getSuit() {
-		//line below changes suit from all lowercase to have a capital
+		//line below changes suit from all lower case to have a capital
 		//first letter
 		suit = suit.substring(0, 1).toUpperCase() + suit.substring(1);
 		return suit;
 	}
 
+	/*
+	 * Returns the rank of the card (as an integer)
+	 * 
+	 * @return an integer representing the Card's rank 
+	 */
 	public int getRank() {
 		return rank;
 	}
 	
+	/*
+	 * Returns a String object representing the Card's value e.g. "Nine of Spades".
+	 * 
+	 * @return the value of the Card as a String
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return getRankStr() + " of " + getSuit();
 	}
-
+	
+	/*
+	 * Returns the rank (as a String)
+	 * 
+	 * @return the rank as a String
+	 */
 	public String getRankStr() {
 		switch(rank) {
 		case 1:
@@ -92,6 +137,11 @@ public class Card implements Comparable<Card> {
 		
 	}
 	
+	/*
+	 * Returns the suit (as an int)
+	 * 
+	 * @return the suit as an integer
+	 */
 	public int getSuitInt() {
 		switch(suit.toLowerCase()) {
 		case "clubs":
@@ -107,6 +157,15 @@ public class Card implements Comparable<Card> {
 		}
 	}
 	
+	/*
+	 * 
+	 * Compares two Card objects using both suit and rank
+	 * 
+	 * @param other the Card that this Card is being compared to.
+	 * @return 1 if the Card is greater than other, -1 if this is less than other
+	 *		   and 0 if the two Cards being compared are equal.
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
 	public int compareTo(Card other) {
 		if(this.getSuitInt() != other.getSuitInt()) {
 			if(this.getSuitInt() > other.getSuitInt())
@@ -127,7 +186,12 @@ public class Card implements Comparable<Card> {
 			
 	}
 	
-	//TODO: should I make my equals reliant on my compareto?
+	/*
+	 * Checks if two Cards are equal
+	 * 
+	 * @param other the Card that this Card is being checked for equality with
+	 * @return true if the Cards are equal, false if the Cards are unequal
+	 */
 	public boolean equals(Card other) {
 		if(this.compareTo(other) == 0)
 			return true;
