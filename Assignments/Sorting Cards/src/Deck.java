@@ -138,9 +138,12 @@ public class Deck {
 			
 			result = "";
 			
+			//the irregularities like adding two tabs instead of one or adding a space
+			//after the diamonds column are to counter the different lengths of the Card names
+			//due to their suit names of different length, which cause the columns to look uneven
 			for(int i = 0; i < 13; i++) {
-				result += clubs[i].toString() + "\t" + diamonds[i].toString() + "\t"
-						+ hearts[i].toString() + "\t" + spades[i].toString() + "\n";
+				result += clubs[i].toString() + "\t\t" + diamonds[i].toString() + " " + "\t"
+						+ hearts[i].toString() + "\t\t" + spades[i].toString() + "\n";
 			}
 		}
 		else {
