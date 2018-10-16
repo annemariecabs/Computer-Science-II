@@ -25,11 +25,14 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param s the value of suit in integer form
 	 * @param r the value of rank in integer form
+	 * @throws IllegalArgumentException if rank or suit values are invalid
 	 */
 	public Card(int s, int r) {
 		suit = getSuitStr(s);
+		
 		rank = r;
-
+		if(getRankStr().equals("Error"))
+			throw new IllegalArgumentException("Invalid input for rank: rank must be an integer between 1 & 13 inclusive");
 	}
 	
 	/**
@@ -37,11 +40,14 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param s the value of suit in String form
 	 * @param r the value of rank in String form
+	 * @throws IllegalArgumentException if rank or suit values are invalid
 	 */
 	public Card(String s, String r) {
 		suit = s.toLowerCase();
+		if(getSuitInt() == -1)
+			throw new IllegalArgumentException("Invalid input for suit: " + s + " is not a possible suit value");
+		
 		rank = getRankInt(r);
-
 	}
 	
 	/**
@@ -49,10 +55,16 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param s the value of suit in String form
 	 * @param r the value of rank in int form
+	 * @throws IllegalArgumentException if rank or suit values are invalid
 	 */
 	public Card(String s, int r) {
 		suit = s.toLowerCase();
+		if(getSuitInt() == -1)
+			throw new IllegalArgumentException("Invalid input for suit: " + s + " is not a possible suit value");
+		
 		rank = r;
+		if(getRankStr().equals("Error"))
+			throw new IllegalArgumentException("Invalid input for rank: rank must be an integer between 1 & 13 inclusive");
 	}
 	
 	/**
@@ -60,6 +72,7 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param s the value of suit in int form
 	 * @param r the value of rank in String form
+	 * @throws IllegalArgumentException if rank or suit values are invalid
 	 */
 	public Card(int s, String r) {
 		suit = getSuitStr(s);
@@ -95,7 +108,11 @@ public class Card implements Comparable<Card> {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return getRankStr() + " of " + getSuit();
+		try {
+			return getRankStr() + " of " + getSuit();
+		} catch (IllegalArgumentException e) {
+			return "Not a valid card: " + e.getMessage();
+		}
 	}
 	
 	/**
@@ -132,7 +149,7 @@ public class Card implements Comparable<Card> {
 		case 13:
 			return "King";
 		default:
-			return "Error"; //means error has occurred
+			return "Error";
 		}
 		
 	}
@@ -142,7 +159,7 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @return the suit as an integer
 	 */
-	public int getSuitInt() {
+	public int getSuitInt()  {
 		switch(suit.toLowerCase()) {
 		case "clubs":
 			return 0;
@@ -153,7 +170,7 @@ public class Card implements Comparable<Card> {
 		case "spades":
 			return 3;
 		default:
-			return -1; //suit should always be 0-3
+			return -1;
 		}
 	}
 	
@@ -199,7 +216,8 @@ public class Card implements Comparable<Card> {
 	}
 
 	//internal method to reduce redundancy in constructors
-	private static String getSuitStr(int s) {
+	//throws an IllegalArgument Exception if s doesn't match an acceptable value of suit
+	private static String getSuitStr(int s) throws IllegalArgumentException {
 
 		switch(s) {
 		case 0:
@@ -211,11 +229,12 @@ public class Card implements Comparable<Card> {
 		case 3:
 			return "Spades";
 		default:
-			return "Error"; //suit should always be 0-3
+			throw new IllegalArgumentException("Invalid input for suit: should be between 0 & 3 inclusive");
 		}
 	}
 
 	//internal method to reduce redundancy in constructors
+	//throws an IllegalArgument Exception if r doesn't match an acceptable value of rank
 	private static int getRankInt(String r) {
 
 		switch(r.toLowerCase()) {
@@ -246,7 +265,7 @@ public class Card implements Comparable<Card> {
 		case "king":
 			return 13;
 		default:
-			return -1; //means error has occurred
+			throw new IllegalArgumentException("Invalid input for rank: " + r + " is not a possible value of rank");
 		}
 	}
 }

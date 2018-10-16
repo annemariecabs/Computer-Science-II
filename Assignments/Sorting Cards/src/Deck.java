@@ -80,15 +80,15 @@ public class Deck {
 	 */
 	public void shuffle() {
 		
-		int originalLength = cards.length;
-		Card[] temp = new Card[cards.length];
+		int random;
+		Card temp;
 		
-		for(int i = 0; i < originalLength; i++) {
-			temp[i] = this.pick();
+		for(int i = 0; i <= topCard; i++) {
+			random = (int) (Math.random() * (topCard + 1));  // random will be a random number in range [0, topCard]
+			temp = cards[i];
+			cards[i] = this.cards[random];
+			cards[random] = temp;
 		}
-		
-		cards = temp;
-		topCard = originalLength - 1;
 		
 	}
 	
@@ -102,7 +102,7 @@ public class Deck {
 	public String toString() {
 		String result = "";
 		
-		if(cards.length == 52) {
+		if(topCard + 1 == 52) {
 			int clubIndex = 0;
 			int diamondIndex = 0;
 			int heartIndex = 0;
@@ -114,7 +114,7 @@ public class Deck {
 			Card[] hearts = new Card[13];
 			Card[] spades = new Card[13];
 			
-			for(int i = 0; i < cards.length; i++) {
+			for(int i = 0; i <= topCard; i++) {
 				if(cards[i].getSuitInt() == 0) {
 					clubs[clubIndex] = cards[i];
 					clubIndex++;
@@ -147,7 +147,7 @@ public class Deck {
 			}
 		}
 		else {
-			for (int i = 0; i < cards.length; i++) {
+			for (int i = 0; i <= topCard; i++) {
 				result += cards[i].toString() + "\n";
 			}
 		}
@@ -167,7 +167,7 @@ public class Deck {
 		if(topCard != other.getTopCard())
 			return false;
 		
-		for(int c = 0; c < cards.length; c++) {
+		for(int c = 0; c <= topCard; c++) {
 			if(! cards[c].equals(cards2[c]))
 					return false;
 		}
@@ -187,14 +187,16 @@ public class Deck {
 	public Deck[] deal(int numHands, int cardsPerHand) {
 		Deck[] hands = new Deck[numHands];
 		
-		if(numHands * cardsPerHand > cards.length)
+		if(numHands * cardsPerHand > topCard + 1)
 			return null;
 		
 		for(int i = 0; i < hands.length; i++) {
 			Card[] temp = new Card[cardsPerHand];
 			
 			for(int j = 0; j < temp.length; j++)  {
-				temp[j] = this.pick(); 
+				temp[j] = this.cards[topCard];
+				this.cards[topCard] = null;
+				topCard--;
 			}
 			
 			hands[i] = new Deck(temp); 
@@ -209,20 +211,14 @@ public class Deck {
 	 * @return a random Card from the Deck
 	 */
 	public Card pick() {
-		int random = (int) (Math.random() * cards.length);
+		int random = (int) (Math.random() * topCard);
 		
-		Card[] temp = new Card[cards.length - 1];
 		Card myPick = cards[random];
 		
-		for(int i = 0, j = 0; i < cards.length; i++, j++) {
-			if(i != random)
-				temp[j] = cards[i];
-			else {
-				j--;
-			}
+		for(int i = random; i < topCard; i++) {
+			cards[i] = cards[i + 1];
 		}
 		
-		cards = temp;
 		topCard--;
 		
 		return myPick;
@@ -236,11 +232,11 @@ public class Deck {
 		int min = 0;
 		Card temp = null;
 		
-		for(int a = 0; a < cards.length; a++) {
+		for(int a = 0; a <= topCard; a++) {
 			
 			min = a;
 			
-			for(int b = a; b < cards.length; b++) {
+			for(int b = a; b <= topCard; b++) {
 				
 				if(cards[min].compareTo(cards[b]) == 1)
 					min = b;
@@ -257,23 +253,24 @@ public class Deck {
 	 * Uses the MergeSort method to sort the Cards in the Deck. 
 	 * This method uses internal methods that were created using the pseudocode at this address:
 	 * https://www.tutorialspoint.com/data_structures_algorithms/merge_sort_algorithm.htm 
+	 * and with help from MergeSort example on pg. 394 in Java Methods book by Maria and Gary Litvin
 	 */
 	public void mergeSort() {
-		cards = mSort(cards);
+		cards = mSort(cards, topCard + 1);
 		
 	}
 	
-	private static Card[] mSort (Card[] temps) {
+	private static Card[] mSort (Card[] temps, int length) {
 		
-		if(temps.length == 1)
+		if(length == 1)
 			return temps;
 		
-		int half = temps.length/2;
+		int half = length/2;
 		
 		Card[] cards1;
 		Card[] cards2;
 		
-		if(temps.length%2 == 0) {
+		if(length%2 == 0) {
 		
 			cards1 = new Card[half];
 			cards2 = new Card[half];
@@ -294,12 +291,12 @@ public class Deck {
 				cards2[i] = temps[i + half];
 			}
 			
-			cards2[cards2.length - 1] = temps[temps.length - 1];
+			cards2[cards2.length - 1] = temps[length - 1];
 		}
 				
 		
-		cards1 = mSort(cards1);
-		cards2 = mSort(cards2);
+		cards1 = mSort(cards1, cards1.length);
+		cards2 = mSort(cards2, cards2.length);
 		
 		return merge(cards1, cards2);
 		
@@ -309,7 +306,7 @@ public class Deck {
 	private static Card[] merge(Card[] cards1, Card[] cards2) {
 		
 		Card[] cards3 = new Card[cards1.length + cards2.length];
-		int cardIndex = 0;;
+		int cardIndex = 0;
 		
 		while(cards1.length > 0 && cards2.length > 0) {
 			if(cards1[0].compareTo(cards2[0]) == 1) {
