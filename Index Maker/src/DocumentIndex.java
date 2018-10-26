@@ -21,5 +21,14 @@ public class DocumentIndex {
 			index.put(word, temp);
 		}
 	}
+	
+	public void addAllWords(String str, int num) {
+		String[] words = str.split(" ");
+		
+		for(String word: words) {
+			if(! index.containsKey(word))
+				addWord(word, num);
+		}
+	}
 
 }
