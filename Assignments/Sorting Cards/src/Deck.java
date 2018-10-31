@@ -354,7 +354,7 @@ public class Deck {
 		
 		//loop that runs while both halves have unmerged items
 		while(i <= middle && j<= to) {
-			if(temp[i].compareTo(temp[j]) < 1) {
+			if(temp[i].compareTo(temp[j]) < 0) {
 				sorted[k] = temp[i];
 				i++;
 			}
