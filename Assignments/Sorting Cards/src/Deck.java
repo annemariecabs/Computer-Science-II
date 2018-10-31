@@ -7,11 +7,11 @@
 
 public class Deck {
 	
-	/*
+	/**
 	 * a card array that holds all of the cards in Deck
 	 */
 	private Card[] cards;
-	/*
+	/**
 	 * the index of the top card of the deck
 	 * for a full deck, it would be 51
 	 */
