@@ -129,13 +129,14 @@ public class Test {
 				Deck deck2 = new Deck();
 				System.out.println(deck.equals(deck2)); 
 			*/
-				/*
+				
 				Deck deck = new Deck(false);
 				System.out.println(deck);
 				
 				deck.selectionSort(); 
 				System.out.println(deck);
 				
+				/*
 				deck.pick();
 				deck.shuffle();
 				deck.selectionSort(); //works for less than 52-card decks

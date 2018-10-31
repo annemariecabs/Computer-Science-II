@@ -11,17 +11,32 @@ public class Deck {
 	private int topCard; //index of topCard on deck, last card's index = 0
 	
 	/**
+	 * {@value #MIN_SUIT_INT} represents minimum integer value of suit
+	 * {@value #MIN_RANK_INT} represents minimum integer value of rank
+	 * {@value #MAX_SUIT_INT} represents maximum integer value of suit
+	 * {@value #MAX_RANK_INT} represents maximum integer value of rank
+	 * {@value #NUM_CARDS_FULL_DECK} represents number of cards in a full deck
+	 * {@value #NUM_CARDS_SUIT} represents number of cards in a suit
+	 */
+	public static final int MIN_SUIT_INT = 0;
+	public static final int MIN_RANK_INT = 1;
+	public static final int MAX_SUIT_INT = 3;
+	public static final int MAX_RANK_INT = 13;
+	public static final int NUM_CARDS_FULL_DECK = 52;
+	public static final int NUM_CARDS_SUIT = 13;
+	
+	/**
 	 * Constructs a default Deck object that holds 52 cards that are sorted.
 	 */
 	public Deck() {
-		cards = new Card[52];
+		cards = new Card[NUM_CARDS_FULL_DECK];
 		
 		int i = 0; //index of card at that time in the loop
-		for(int s = 0; s < 4; s++)
-			for(int r = 1; r < 14; r++, i++)
+		for(int s = MIN_SUIT_INT; s < MAX_SUIT_INT + 1; s++)
+			for(int r = MIN_RANK_INT; r < MAX_RANK_INT + 1; r++, i++)
 				cards[i] = new Card(s, r);
 		
-		topCard = 51;
+		topCard = NUM_CARDS_FULL_DECK - 1;
 	}
 	
 	/**
@@ -30,15 +45,7 @@ public class Deck {
 	 * @param sorted if true, sorts the Card[], if false, shuffles the Card[]
 	 */
 	public Deck(boolean sorted) {
-		cards = new Card[52];
-		
-		int i = 0; //index of card at that time in the loop
-		for(int s = 0; s < 4; s++)
-			for(int r = 1; r < 14; r++, i++) 
-				cards[i] = new Card(s, r);
-			
-				
-		topCard = 51;
+		this(); //reduces redundancy by calling no-args Deck constructor
 		
 		if(! sorted)
 			this.shuffle();
@@ -102,36 +109,37 @@ public class Deck {
 	public String toString() {
 		String result = "";
 		
-		if(topCard + 1 == 52) {
+		if(topCard + 1 == NUM_CARDS_FULL_DECK) {
 			int clubIndex = 0;
 			int diamondIndex = 0;
 			int heartIndex = 0;
 			int spadeIndex = 0;
 			
 			
-			Card[] clubs = new Card[13];
-			Card[] diamonds = new Card[13];
-			Card[] hearts = new Card[13];
-			Card[] spades = new Card[13];
+			Card[] clubs = new Card[NUM_CARDS_SUIT];
+			Card[] diamonds = new Card[NUM_CARDS_SUIT];
+			Card[] hearts = new Card[NUM_CARDS_SUIT];
+			Card[] spades = new Card[NUM_CARDS_SUIT];
 			
 			for(int i = 0; i <= topCard; i++) {
-				if(cards[i].getSuitInt() == 0) {
+				switch(cards[i].getSuitInt()) {
+				case Card.CLUBS_INT:
 					clubs[clubIndex] = cards[i];
 					clubIndex++;
-				}
-				else if(cards[i].getSuitInt() == 1) {
+					break;
+				case Card.DIAMONDS_INT:
 					diamonds[diamondIndex] = cards[i];
 					diamondIndex++;
-				}
-				else if(cards[i].getSuitInt() == 2) {
+					break;
+				case Card.HEARTS_INT:
 					hearts[heartIndex] = cards[i];
 					heartIndex++;
-				}
-				else if(cards[i].getSuitInt() == 3) {
+					break;
+				case Card.SPADES_INT:
 					spades[spadeIndex] = cards[i];
 					spadeIndex++;
-				}
-				else {
+					break;
+				default:
 					System.out.println("Error has occurred");
 				}
 			}
@@ -141,7 +149,7 @@ public class Deck {
 			//the irregularities like adding two tabs instead of one or adding a space
 			//after the diamonds column are to counter the different lengths of the Card names
 			//due to their suit names of different length, which cause the columns to look uneven
-			for(int i = 0; i < 13; i++) {
+			for(int i = 0; i < NUM_CARDS_SUIT; i++) {
 				result += clubs[i].toString() + "\t\t" + diamonds[i].toString() + " " + "\t"
 						+ hearts[i].toString() + "\t\t" + spades[i].toString() + "\n";
 			}
@@ -161,10 +169,12 @@ public class Deck {
 	 * @param other the Deck object that this is being checked against
 	 * @return true, if this is equal to other; false, if this is not equal to other
 	 */
-	public boolean equals(Deck other) {
-		Card[] cards2 = other.getCards();
+	public boolean equals(Object other) {
+		Deck oth = (Deck) other;
 		
-		if(topCard != other.getTopCard())
+		Card[] cards2 = oth.getCards();
+		
+		if(topCard != oth.getTopCard())
 			return false;
 		
 		for(int c = 0; c <= topCard; c++) {
@@ -211,6 +221,9 @@ public class Deck {
 	 * @return a random Card from the Deck
 	 */
 	public Card pick() {
+		if(topCard == -1)
+			return null;
+		
 		int random = (int) (Math.random() * topCard);
 		
 		Card myPick = cards[random];

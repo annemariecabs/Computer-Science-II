@@ -11,6 +11,11 @@ public class Card implements Comparable<Card> {
 	private String suit;
 	//1 = ace, 11 = jack, 12 = queen, 13 = king
 	private int rank;
+	
+	public static final int CLUBS_INT = 0;
+	public static final int DIAMONDS_INT = 1;
+	public static final int HEARTS_INT = 2;
+	public static final int SPADES_INT = 3;
 
 	/**
 	 * Constructs a default card (the Ace of Clubs)
@@ -162,15 +167,15 @@ public class Card implements Comparable<Card> {
 	public int getSuitInt()  {
 		switch(suit.toLowerCase()) {
 		case "clubs":
-			return 0;
+			return CLUBS_INT;
 		case "diamonds":
-			return 1;
+			return DIAMONDS_INT;
 		case "hearts":
-			return 2;
+			return HEARTS_INT;
 		case "spades":
-			return 3;
+			return SPADES_INT;
 		default:
-			return -1;
+			return -1; //suit should always be 0-3
 		}
 	}
 	
@@ -208,8 +213,10 @@ public class Card implements Comparable<Card> {
 	 * @param other the Card that this Card is being checked for equality with
 	 * @return true if the Cards are equal, false if the Cards are unequal
 	 */
-	public boolean equals(Card other) {
-		if(this.compareTo(other) == 0)
+	public boolean equals(Object other) {
+		Card oth = (Card) other;
+		
+		if(this.compareTo(oth) == 0)
 			return true;
 		else
 			return false;
@@ -217,6 +224,15 @@ public class Card implements Comparable<Card> {
 
 	//internal method to reduce redundancy in constructors
 	//throws an IllegalArgument Exception if s doesn't match an acceptable value of suit
+	/**
+	 * 
+	 * Returns the String value of a suit given as an integer. Used internally to reduce
+	 * redundancy of constructors where suit is given as an integer.
+	 * 
+	 * @param s the integer version of suit that will be used to find the String equivalent
+	 * @return the String equivalent of integer s
+	 * @throws IllegalArgumentException if the int given doesn't have a String equivalent for suit
+	 */
 	private static String getSuitStr(int s) throws IllegalArgumentException {
 
 		switch(s) {
@@ -235,7 +251,17 @@ public class Card implements Comparable<Card> {
 
 	//internal method to reduce redundancy in constructors
 	//throws an IllegalArgument Exception if r doesn't match an acceptable value of rank
-	private static int getRankInt(String r) {
+	/**
+	 * 
+	 * Returns the integer value of a given String rank. Is used internally to 
+	 * get the equivalent integer value of a rank given as String to reduce redundancy
+	 * in constructors where rank is given as a String.
+	 * 
+	 * @param r the String value of the rank that it gets the int for
+	 * @return the equivalent integer value to the rank held by String r 
+	 * @throws IllegalArgumentException if String r doesn't have an equivalent integer rank
+	 */
+	private static int getRankInt(String r) throws IllegalArgumentException{
 
 		switch(r.toLowerCase()) {
 		case "ace":
