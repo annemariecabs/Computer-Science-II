@@ -19,7 +19,7 @@ public class CardComparator implements Comparator<Card> {
 	/**
 	 * A boolean that keeps track of whether the Cards should be sorted in ascending
 	 * or descending order. If true, Cards should be sorted in ascending order.
-	 * If false, Cards should be sorted in ascending order.
+	 * If false, Cards should be sorted in descending order.
 	 */
 	private boolean ascend;
 	
