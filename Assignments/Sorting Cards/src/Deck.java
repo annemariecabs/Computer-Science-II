@@ -7,22 +7,39 @@
 
 public class Deck {
 	
+	/*
+	 * a card array that holds all of the cards in Deck
+	 */
 	private Card[] cards;
+	/*
+	 * the index of the top card of the deck
+	 * for a full deck, it would be 51
+	 */
 	private int topCard; //index of topCard on deck, last card's index = 0
 	
 	/**
 	 * {@value #MIN_SUIT_INT} represents minimum integer value of suit
-	 * {@value #MIN_RANK_INT} represents minimum integer value of rank
-	 * {@value #MAX_SUIT_INT} represents maximum integer value of suit
-	 * {@value #MAX_RANK_INT} represents maximum integer value of rank
-	 * {@value #NUM_CARDS_FULL_DECK} represents number of cards in a full deck
-	 * {@value #NUM_CARDS_SUIT} represents number of cards in a suit
 	 */
 	public static final int MIN_SUIT_INT = 0;
+	/**
+	 * {@value #MIN_RANK_INT} represents minimum integer value of rank
+	 */
 	public static final int MIN_RANK_INT = 1;
+	/**
+	 * {@value #MAX_SUIT_INT} represents maximum integer value of suit
+	 */
 	public static final int MAX_SUIT_INT = 3;
+	/**
+	 * {@value #MAX_RANK_INT} represents maximum integer value of rank
+	 */
 	public static final int MAX_RANK_INT = 13;
+	/**
+	 * {@value #NUM_CARDS_FULL_DECK} represents number of cards in a full deck
+	 */
 	public static final int NUM_CARDS_FULL_DECK = 52;
+	/**
+	 * {@value #NUM_CARDS_SUIT} represents number of cards in a suit
+	 */
 	public static final int NUM_CARDS_SUIT = 13;
 	
 	/**

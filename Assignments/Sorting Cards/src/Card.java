@@ -8,13 +8,33 @@
 
 public class Card implements Comparable<Card> {
 
+	/*
+	 * the suit value of the Card
+	 * could be: "Clubs", "Hearts", "Diamonds", or "Spades"
+	 */
 	private String suit;
-	//1 = ace, 11 = jack, 12 = queen, 13 = king
+	/*
+	 * the rank value of the Card
+	 * assignments of ranks that don't directly match to a number:
+	 * 1 = ace, 11 = jack, 12 = queen, 13 = king
+	 */
 	private int rank;
 	
+	/*
+	 * {@value #CLUBS_INT} the integer value assigned to the clubs suit
+	 */
 	public static final int CLUBS_INT = 0;
+	/*
+	 * {@value #DIAMONDS_INT} the integer value assigned to the diamonds suit
+	 */
 	public static final int DIAMONDS_INT = 1;
+	/*
+	 * {@value #HEARTS_INT} the integer value assigned to the hearts suit
+	 */
 	public static final int HEARTS_INT = 2;
+	/*
+	 * {@value #SPADES_INT} the integer value assigned to the spades suit
+	 */
 	public static final int SPADES_INT = 3;
 
 	/**
