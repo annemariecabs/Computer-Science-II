@@ -281,7 +281,7 @@ public class Card implements Comparable<Card> {
 	 * @return the equivalent integer value to the rank held by String r 
 	 * @throws IllegalArgumentException if String r doesn't have an equivalent integer rank
 	 */
-	private static int getRankInt(String r) throws IllegalArgumentException{
+	private static int getRankInt(String r) throws IllegalArgumentException {
 
 		switch(r.toLowerCase()) {
 		case "ace":
