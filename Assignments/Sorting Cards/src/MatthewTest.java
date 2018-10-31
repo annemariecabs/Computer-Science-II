@@ -23,7 +23,7 @@ public class MatthewTest {
 		po(c);
 		
 	
-		// Random suit ints
+		// Random suit ints - did cause an exception
 		/*
 		c = new Card(-1, 1);
 		System.out.println(String.format("Random int suits allowed: %b", !c.toString().contains("Error")));

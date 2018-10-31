@@ -25,28 +25,28 @@ public class Test {
 			
 				card = new Card("Spades", "Four");
 				System.out.println(card.toString());
-				*/
+				
 				
 				//testing constructors with out of bounds
 				//all tests returned exceptions 
-				/*
-				card = new Card(-1, 4);
-				card = new Card(4, 4);
-				card = new Card(3, 14);
-				card = new Card(3, 0);
-				*/
 				
-		/*
-				Card card = new Card(1, 3);
+				//card = new Card(-1, 4);
+				//card = new Card(4, 4);
+				//card = new Card(3, 14);
+				//card = new Card(3, 0);
+				
+				
+		
+				card = new Card(1, 3);
 				//testing getters and similar methods
 				System.out.println(card.getRank());
 				System.out.println(card.getSuit());
 				System.out.println(card.getRankStr());
 				System.out.println(card.getSuitInt());
-				*/
 				
-				/*
-				Card card = new Card(3, 4);
+				
+				
+				card = new Card(3, 4);
 				
 				//testing compareTo and equals
 				Card card2 = new Card("Spades", "Four");
@@ -94,6 +94,8 @@ public class Test {
 				Arrays.sort(cards2, new CardComparator(false));
 				System.out.println(Arrays.toString(cards2));
 				*/
+	
+				
 				
 		/*
 				//testing Deck constructors
@@ -103,8 +105,6 @@ public class Test {
 				deck = new Deck(true);
 				System.out.println(deck.toString());
 				
-				//shuffle does work - checked in debug
-				//however the toString doesn't show them as shuffled 
 				deck = new Deck(false);
 				System.out.println(deck.toString());
 				
@@ -128,19 +128,21 @@ public class Test {
 				
 				Deck deck2 = new Deck();
 				System.out.println(deck.equals(deck2)); 
-			*/
+			
 				
-				Deck deck = new Deck(false);
+				deck = new Deck(false);
 				System.out.println(deck);
 				
 				deck.selectionSort(); 
 				System.out.println(deck);
 				
-				/*
+				
 				deck.pick();
 				deck.shuffle();
 				deck.selectionSort(); //works for less than 52-card decks
 				System.out.println(deck);
+				
+				System.out.println("PARTITION + \n");
 				
 				deck = new Deck(false);
 				System.out.println(deck);
@@ -160,8 +162,9 @@ public class Test {
 				
 				deck.mergeSort();
 				System.out.println(deck + "\n");
-				*/
 				
+				
+		*/
 		/*
 				Deck deck = new Deck();
 				
@@ -189,8 +192,22 @@ public class Test {
 				deck = new Deck();
 				decks2 = deck.deal(4, 13);
 				System.out.println(Arrays.toString(decks));
-				System.out.println(deck);
-				*/
+				System.out.println(deck.toString());
+			*/
+			/*
+			Deck deck = new Deck();
+			int topCard = deck.getTopCard();
+			for(int i = 0; i <= topCard; i++) {
+				deck.pick();
+			}
+			
+			System.out.println(deck.pick());
+			deck.mergeSort();
+			deck.selectionSort();
+			deck.deal(1, 1);
+			deck.shuffle();
+			System.out.println(deck);
+			*/
 		
 	}
 	

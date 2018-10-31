@@ -1,7 +1,15 @@
 /**
- * This class will be used to create Card objects.
+ * This class will be used to create Card objects. Card objects have two fields: a rank and 
+ * a suit. The suit is an String and rank is an integer, but this class has provided methods
+ * to retrieve them as both Strings and integers and there are Constructors to create them
+ * with the ranks and suits as both ints, int and String, String and int, and both Strings.
+ * 
+ * This class mainly just provides basic class methods: constructors, getters,
+ * toString(), compareTo(), and equals(). This is because this class is primarily being used
+ * for the Deck class.
  *
  * @author AnneMarie Caballero
+ * @see Deck
  *
  */
 
@@ -36,13 +44,145 @@ public class Card implements Comparable<Card> {
 	 * {@value #SPADES_INT} the integer value assigned to the spades suit
 	 */
 	public static final int SPADES_INT = 3;
-
+	/**
+	 * {@value #CLUBS_STR} the String value assigned to the clubs suit
+	 */
+	public static final String CLUBS_STR = "clubs";
+	/**
+	 * {@value #DIAMONDS_STR} the String value assigned to the diamonds suit
+	 */
+	public static final String DIAMONDS_STR = "diamonds";
+	/**
+	 * {@value #HEARTS_STR} the String value assigned to the hearts suit
+	 */
+	public static final String HEARTS_STR = "hearts";
+	/**
+	 * {@value #SPADES_STR} the String value assigned to the spades suit
+	 */
+	public static final String SPADES_STR = "spades";
+	
+	/**
+	 * {@value #ACE_INT} the integer value assigned to the Ace rank
+	 */
+	public static final int ACE_INT = 1;
+	/**
+	 * {@value #TWO_INT} the integer value assigned to the Two rank
+	 */
+	public static final int TWO_INT = 2;
+	/**
+	 * {@value #THREE_INT} the integer value assigned to the Three rank
+	 */
+	public static final int THREE_INT = 3;
+	/**
+	 * {@value #FOUR_INT} the integer value assigned to the Four rank
+	 */
+	public static final int FOUR_INT = 4;
+	/**
+	 * {@value #FIVE_INT} the integer value assigned to the Five rank
+	 */
+	public static final int FIVE_INT = 5;
+	/**
+	 * {@value #SIX_INT} the integer value assigned to the Six rank
+	 */
+	public static final int SIX_INT = 6;
+	/**
+	 * {@value #SEVEN_INT} the integer value assigned to the Seven rank
+	 */
+	public static final int SEVEN_INT = 7;
+	/**
+	 * {@value #EIGHT_INT} the integer value assigned to the Eight rank
+	 */
+	public static final int EIGHT_INT = 8;
+	/**
+	 * {@value #NINE_INT} the integer value assigned to the Nine rank
+	 */
+	public static final int NINE_INT = 9;
+	/**
+	 * {@value #TEN_INT} the integer value assigned to the Ten rank
+	 */
+	public static final int TEN_INT = 10;
+	/**
+	 * {@value #JACK_INT} the integer value assigned to the Jack rank
+	 */
+	public static final int JACK_INT = 11;
+	/**
+	 * {@value #QUEEN_INT} the integer value assigned to the Queen rank
+	 */
+	public static final int QUEEN_INT = 12;
+	/**
+	 * {@value #KING_INT} the integer value assigned to the King rank
+	 */
+	public static final int KING_INT = 13;
+	/**
+	 * {@value #ACE_STR} the String value assigned to the Ace rank (internally)
+	 */
+	public static final String ACE_STR = "ace";
+	/**
+	 * {@value #TWO_STR} the String value assigned to the Two rank (internally)
+	 */
+	public static final String TWO_STR = "two";
+	/**
+	 * {@value #THREE_STR} the String value assigned to the Three rank (internally)
+	 */
+	public static final String THREE_STR = "three";
+	/**
+	 * {@value #FOUR_STR} the String value assigned to the Four rank (internally)
+	 */
+	public static final String FOUR_STR = "four";
+	/**
+	 * {@value #FIVE_STR} the String value assigned to the Five rank (internally)
+	 */
+	public static final String FIVE_STR = "five";
+	/**
+	 * {@value #SIX_STR} the String value assigned to the Six rank (internally)
+	 */
+	public static final String SIX_STR = "six";
+	/**
+	 * {@value #SEVEN_STR} the String value assigned to the Seven rank (internally)
+	 */
+	public static final String SEVEN_STR = "seven";
+	/**
+	 * {@value #EIGHT_STR} the String value assigned to the Eight rank (internally)
+	 */
+	public static final String EIGHT_STR = "eight";
+	/**
+	 * {@value #NINE_STR} the String value assigned to the Nine rank (internally)
+	 */
+	public static final String NINE_STR = "nine";
+	/**
+	 * {@value #TEN_STR} the String value assigned to the Ten rank (internally)
+	 */
+	public static final String TEN_STR = "ten";
+	/**
+	 * {@value #JACK_STR} the String value assigned to the Jack rank (internally)
+	 */
+	public static final String JACK_STR = "jack";
+	/**
+	 * {@value #QUEEN_STR} the String value assigned to the Queen rank (internally)
+	 */
+	public static final String QUEEN_STR = "queen";
+	/**
+	 * {@value #KING_STR} the String value assigned to the King rank (internally)
+	 */
+	public static final String KING_STR = "king";
+	
+	/**
+	 * {@value #ERROR_STR} the String value returned by a method if there is an error
+	 */
+	public static final String ERROR_STR = "Error";
+	
+	/**
+	 * {@value #ERROR_INT} the integer value returned by some methods if there is an error
+	 */
+	public static final int ERROR_INT = -1;
+	
+	
 	/**
 	 * Constructs a default card (the Ace of Clubs)
 	 */
 	public Card () {
-		suit = "Clubs";
-		rank = 1;
+		suit = CLUBS_STR;
+		rank = ACE_INT;
 	}
 
 	/**
@@ -56,7 +196,7 @@ public class Card implements Comparable<Card> {
 		suit = getSuitStr(s);
 		
 		rank = r;
-		if(getRankStr().equals("Error"))
+		if(getRankStr().equals(ERROR_STR))
 			throw new IllegalArgumentException("Invalid input for rank: rank must be an integer between 1 & 13 inclusive");
 	}
 	
@@ -69,7 +209,7 @@ public class Card implements Comparable<Card> {
 	 */
 	public Card(String s, String r) {
 		suit = s.toLowerCase();
-		if(getSuitInt() == -1)
+		if(getSuitInt() == ERROR_INT)
 			throw new IllegalArgumentException("Invalid input for suit: " + s + " is not a possible suit value");
 		
 		rank = getRankInt(r);
@@ -84,11 +224,11 @@ public class Card implements Comparable<Card> {
 	 */
 	public Card(String s, int r) {
 		suit = s.toLowerCase();
-		if(getSuitInt() == -1)
+		if(getSuitInt() == ERROR_INT)
 			throw new IllegalArgumentException("Invalid input for suit: " + s + " is not a possible suit value");
 		
 		rank = r;
-		if(getRankStr().equals("Error"))
+		if(getRankStr().equals(ERROR_STR))
 			throw new IllegalArgumentException("Invalid input for rank: rank must be an integer between 1 & 13 inclusive");
 	}
 	
@@ -145,36 +285,38 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @return the rank as a String
 	 */
+	//Uses string literals because this is used to get rank formatted properly
+	//and so first letter should be capitalized
 	public String getRankStr() {
 		switch(rank) {
-		case 1:
+		case ACE_INT:
 			return "Ace";
-		case 2:
+		case TWO_INT:
 			return "Two";
-		case 3:
+		case THREE_INT:
 			return "Three";
-		case 4:
+		case FOUR_INT:
 			return "Four";
-		case 5:
+		case FIVE_INT:
 			return "Five";
-		case 6:
+		case SIX_INT:
 			return "Six";
-		case 7:
+		case SEVEN_INT:
 			return "Seven";
-		case 8:
+		case EIGHT_INT:
 			return "Eight";
-		case 9:
+		case NINE_INT:
 			return "Nine";
-		case 10:
+		case TEN_INT:
 			return "Ten";
-		case 11:
+		case JACK_INT:
 			return "Jack";
-		case 12:
+		case QUEEN_INT:
 			return "Queen";
-		case 13:
+		case KING_INT:
 			return "King";
 		default:
-			return "Error";
+			return ERROR_STR;
 		}
 		
 	}
@@ -186,16 +328,16 @@ public class Card implements Comparable<Card> {
 	 */
 	public int getSuitInt()  {
 		switch(suit.toLowerCase()) {
-		case "clubs":
+		case CLUBS_STR:
 			return CLUBS_INT;
-		case "diamonds":
+		case DIAMONDS_STR:
 			return DIAMONDS_INT;
-		case "hearts":
+		case HEARTS_STR:
 			return HEARTS_INT;
-		case "spades":
+		case SPADES_STR:
 			return SPADES_INT;
 		default:
-			return -1; //suit should always be 0-3
+			return ERROR_INT; //suit should always be 0-3
 		}
 	}
 	
@@ -256,14 +398,14 @@ public class Card implements Comparable<Card> {
 	private static String getSuitStr(int s) throws IllegalArgumentException {
 
 		switch(s) {
-		case 0:
-			return "Clubs";
-		case 1:
-			return "Diamonds";
-		case 2:
-			return "Hearts";
-		case 3:
-			return "Spades";
+		case CLUBS_INT:
+			return CLUBS_STR;
+		case DIAMONDS_INT:
+			return DIAMONDS_STR;
+		case HEARTS_INT:
+			return HEARTS_STR;
+		case SPADES_INT:
+			return SPADES_STR;
 		default:
 			throw new IllegalArgumentException("Invalid input for suit: should be between 0 & 3 inclusive");
 		}
@@ -284,32 +426,32 @@ public class Card implements Comparable<Card> {
 	private static int getRankInt(String r) throws IllegalArgumentException {
 
 		switch(r.toLowerCase()) {
-		case "ace":
-			return 1;
-		case "two":
-			return 2;
-		case "three":
-			return 3;
-		case "four":
-			return 4;
-		case "five":
-			return 5;
-		case "six":
-			return 6;
-		case "seven":
-			return 7;
-		case "eight":
-			return 8;
-		case "nine":
-			return 9;
-		case "ten":
-			return 10;
-		case "jack":
-			return 11;
-		case "queen":
-			return 12;
-		case "king":
-			return 13;
+		case ACE_STR:
+			return ACE_INT;
+		case TWO_STR:
+			return TWO_INT;
+		case THREE_STR:
+			return THREE_INT;
+		case FOUR_STR:
+			return FOUR_INT;
+		case FIVE_STR:
+			return FIVE_INT;
+		case SIX_STR:
+			return SIX_INT;
+		case SEVEN_STR:
+			return SEVEN_INT;
+		case EIGHT_STR:
+			return EIGHT_INT;
+		case NINE_STR:
+			return NINE_INT;
+		case TEN_STR:
+			return TEN_INT;
+		case JACK_STR:
+			return JACK_INT;
+		case QUEEN_STR:
+			return QUEEN_INT;
+		case KING_STR:
+			return KING_INT;
 		default:
 			throw new IllegalArgumentException("Invalid input for rank: " + r + " is not a possible value of rank");
 		}

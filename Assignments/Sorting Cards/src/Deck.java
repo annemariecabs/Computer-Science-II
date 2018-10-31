@@ -1,5 +1,22 @@
 /**
  * This class will be used to create Deck objects, which are groups of Cards.
+ * Deck has two fields: a Card[] to hold its current Cards, and a topCard
+ * that has the index of the top card of the Card[]. topCard is necessary because
+ * some of the Deck's functionalities require the removal of Cards, and topCard 
+ * prevents those methods from needing to reinstantiate the Deck.
+ * 
+ * The main functionalities of Deck are shuffle, deal, pick, selectionSort, 
+ * and mergeSort. Shuffle shuffles the current deck. Deal deals a certain amount 
+ * of hands from the Deck, each their own individual Deck. Pick picks a random card 
+ * from the Deck, removes it and returns it. selectionSort uses a backwards SelectionSort
+ * (the algorithm used swaps to the first position not the last and continues by having 
+ * the sorted section of the deck during the sort be in the front of the deck which is atypical)
+ * algorithm to sort the deck. MergeSort uses a typical MergeSort algorithm to sort the deck.
+ * The class also has class-typical functions like equals, getters,
+ * and constructors. There are 3 constructors, one that creates a sorted 52-card deck,
+ * one that can create a sorted or unsorted 52-card deck, and one that creates a deck
+ * based on the Card[] provided.
+ * 
  *
  * @author AnneMarie Caballero
  *
@@ -66,8 +83,6 @@ public class Deck {
 		
 		if(! sorted)
 			this.shuffle();
-		
-		
 	}
 	
 	/**
@@ -280,134 +295,91 @@ public class Deck {
 	}
 	
 	/**
+	 * Holds the sorted Card array in the mergeSort methods
+	 */
+	public static Card[] sorted;
+	
+	/**
 	 * Uses the MergeSort method to sort the Cards in the Deck. 
-	 * This method uses internal methods that were created using the pseudocode at this address:
-	 * https://www.tutorialspoint.com/data_structures_algorithms/merge_sort_algorithm.htm 
-	 * and with help from MergeSort example on pg. 394 in Java Methods book by Maria and Gary Litvin
+	 * This method uses internal methods that were created with a lot of help
+	 * from the MergeSort example on pg. 394 in Java Methods book by Maria and Gary Litvin
 	 */
 	public void mergeSort() {
-		cards = mSort(cards, topCard + 1);
+		sorted = new Card[topCard + 1];
+		mSort(cards, 0, topCard);
 		
 	}
 	
-	private static Card[] mSort (Card[] temps, int length) {
+	/**
+	 * 
+	 * The recursive sort part of MergeSort. This method was based heavily on the one from
+	 * page 394 of the Java Methods book by Maria and Gary Litvin.
+	 * 
+	 * @param temp array that references cards and thus changes cards when it is changed
+	 * @param from first index of given array
+	 * @param to last index of given arry
+	 */
+	private static void mSort (Card[] temp, int from, int to) {
 		
-		if(length == 1)
-			return temps;
-		
-		int half = length/2;
-		
-		Card[] cards1;
-		Card[] cards2;
-		
-		if(length%2 == 0) {
-		
-			cards1 = new Card[half];
-			cards2 = new Card[half];
-			
-			for(int i = 0; i < half; i++) {
-				cards1[i] = temps[i];
-				cards2[i] = temps[i + half];
+		if(to - from < 2) {
+			if(to > from && temp[to].compareTo(temp[from]) < 0) {
+				Card t = temp[from];
+				temp[from] = temp[to];
+				temp[to] = t;
+				
 			}
 		}
-		
 		else {
-		
-			cards1 = new Card[half];
-			cards2 = new Card[half + 1];
+			int middle = (from + to)/2;
+			mSort(temp, from, middle);
+			mSort(temp, middle + 1, to);
+			merge(temp, from, middle, to);
 			
-			for(int i = 0; i < half; i++) {
-				cards1[i] = temps[i];
-				cards2[i] = temps[i + half];
-			}
-			
-			cards2[cards2.length - 1] = temps[length - 1];
 		}
-				
-		
-		cards1 = mSort(cards1, cards1.length);
-		cards2 = mSort(cards2, cards2.length);
-		
-		return merge(cards1, cards2);
-		
 	}
 	
-	
-	private static Card[] merge(Card[] cards1, Card[] cards2) {
+	/**
+	 * 
+	 * Joins both sides of the array sent in back together. This method was based heavily on 
+	 * the one from page 394 of the Java Methods book by Maria and Gary Litvin.
+	 * 
+	 * @param temp array that references cards and thus changes cards when it is changed
+	 * @param from first index of the given array
+	 * @param middle middle index of the given array
+	 * @param to last index of the given array
+	 */
+	private static void merge(Card[] temp, int from, int middle, int to) {
 		
-		Card[] cards3 = new Card[cards1.length + cards2.length];
-		int cardIndex = 0;
+		int i = from, j = middle + 1, k = from;
 		
-		while(cards1.length > 0 && cards2.length > 0) {
-			if(cards1[0].compareTo(cards2[0]) == 1) {
-				cards3[cardIndex] = cards2[0];
-				cardIndex++;
-				Card[] temps = new Card[cards2.length - 1];
-				
-				if(cards2.length != 1) {
-					for(int i = 0; i < temps.length; i++)
-						temps[i] = cards2[i + 1];
-					
-					cards2 = temps;
-				}
-				
-				else 
-					cards2 = new Card[0];
-				
+		//loop that runs while both halves have unmerged items
+		while(i <= middle && j<= to) {
+			if(temp[i].compareTo(temp[j]) < 1) {
+				sorted[k] = temp[i];
+				i++;
 			}
 			else {
-				cards3[cardIndex] = cards1[0];
-				cardIndex++;
-				Card[] temps = new Card[cards1.length - 1];
-				
-				if(cards1.length != 1) {
-					for(int i = 0; i < temps.length; i++)
-						temps[i] = cards1[i + 1];
-					
-					cards1 = temps;
-				}
-				else 
-					cards1 = new Card[0];
-				
+				sorted[k] = temp[j];
+				j++;
 			}
+			k++;
 		}
-		
-		while(cards1.length > 0) {
-			cards3[cardIndex] = cards1[0];
-			cardIndex++;
-			
-			Card[] temps = new Card[cards1.length - 1];
-				
-			if(cards1.length != 1) {
-				for(int i = 0; i < temps.length; i++)
-					temps[i] = cards1[i + 1];
-				
-				cards1 = temps;
-			}
-			else
-				cards1 = new Card[0];
-				
-		}
-		
-		while(cards2.length > 0) {
-			cards3[cardIndex] = cards2[0];
-			cardIndex++;
-			
-			Card[] temps = new Card[cards2.length - 1];
-			
-			if(cards2.length != 1) {
-				for(int i = 0; i < temps.length; i++)
-					temps[i] = cards2[i + 1];
-				
-				cards2 = temps;
-			}
-			else
-				cards2 = new Card[0];
-			
-		}
-		
-		return cards3;
 
+		while(i <= middle) {
+			sorted[k] = temp[i];
+			i++;
+			k++;
+		}
+		
+		while(j <= to) {
+			sorted[k] = temp[j];
+			j++;
+			k++;
+		}
+		
+		for(k = from; k <= to; k++) {
+			temp[k] = sorted[k];
+		}
 		
 	}
 	

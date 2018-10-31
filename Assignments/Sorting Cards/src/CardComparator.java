@@ -1,12 +1,17 @@
 import java.util.Comparator;
 
-
 /**
  * 
  * This Comparator is for Card objects, and compares them on the basis of rank. This Comparator was modeled 
- * off the Comparator example from pg.384 of the Java Methods book by Maria and Gary Litvin.
+ * off the Comparator example from pg.384 of the Java Methods book by Maria and Gary Litvin. 
+ * 
+ * The Comparator does not include suit in its comparison. Additionally, the comparator has
+ * one boolean which determines whether or not the comparator is sorting in ascending order (if true)
+ * or descending order (if false). The default constructor however just sets this boolean field
+ * to true.
  *
  * @author AnneMarie Caballero
+ * @see <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html"> Comparator </a>
  */
 
 public class CardComparator implements Comparator<Card> {
