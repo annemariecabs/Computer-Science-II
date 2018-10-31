@@ -12,7 +12,7 @@ public class Deck {
 	 */
 	private Card[] cards;
 	/**
-	 * the index of the top card of the deck
+	 * the index of the top card of the deck;
 	 * for a full deck, it would be 51
 	 */
 	private int topCard; //index of topCard on deck, last card's index = 0

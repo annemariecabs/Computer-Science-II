@@ -9,12 +9,12 @@
 public class Card implements Comparable<Card> {
 
 	/**
-	 * the suit value of the Card
+	 * the suit value of the Card;
 	 * could be: "Clubs", "Hearts", "Diamonds", or "Spades"
 	 */
 	private String suit;
 	/**
-	 * the rank value of the Card
+	 * the rank value of the Card;
 	 * assignments of ranks that don't directly match to a number:
 	 * 1 = ace, 11 = jack, 12 = queen, 13 = king
 	 */
