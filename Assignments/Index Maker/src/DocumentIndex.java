@@ -17,6 +17,12 @@ import java.util.TreeMap;
  * add a whole line of a document to a DocumentIndex, and uses the addWord method internally. Once again,
  * this class formats the words as uppercase once they have been added to the document.
  * 
+ * Additionally, I added the methods getKeys() and getEntry(String key) in addition to the 
+ * required functions because the IndexMaker class needed the ability to access the keys
+ * and entries in the index. Both are simple getters that allow access to TreeMap functions
+ * that do the same thing.
+ * 
+ * 
  * @author AnneMarie Caballero
  * @see IndexEntry, IndexMaker
  */
@@ -37,12 +43,28 @@ public class DocumentIndex {
 		index = new TreeMap<String, IndexEntry>();
 	}
 	
-	//TODO: write Javadocs
+	/**
+	 * Returns the keySet() of index. This allows access to a TreeMap function needed
+	 * for the IndexMaker class.
+	 * 
+	 * @return the keySet() of the TreeMap that holds the IndexEntries.
+	 * @see IndexMaker
+	 */
 	public Set<String> getKeys() {
 		return index.keySet();
 	}
 	
-	//TODO: write Javadocs
+	/**
+	 * This method returns the corresponding IndexEntry to the key provided if the key
+	 * set does contain the key. The method was created for its use within IndexMaker,
+	 * and, as such, it is unlikely it will return null within that class because IndexMaker 
+	 * uses it with the key set provided by getKeys()
+	 * 
+	 * @param key a String that if it is found within the key set for the TreeMap 
+	 * 			  will return the corresponding IndexEntry for the key
+	 * @return an IndexEntry if index has key and null if IndexEntry does not
+	 * @see IndexMaker
+	 */
 	public IndexEntry getEntry(String key) {
 		return index.get(key);
 	}
@@ -81,7 +103,8 @@ public class DocumentIndex {
 	 * to take a line of a document and add all of the new words on the line to the index
 	 * and add the number of the line to the TreeSet of line numbers for words already in the index.
 	 * The method uses the {@link addWord()} method of this class to do so. Words when added
-	 * to the index are formatted as uppercase.
+	 * to the index are formatted as uppercase. The method utilizes regex to ensure that 
+	 * words do not include numbers or unnecessary punctuation.
 	 * 
 	 * @param str String that contains the words to be added to index.
 	 * @param num number of the line of the document str is
@@ -94,10 +117,14 @@ public class DocumentIndex {
 		for(String word: words) {
 			wordChars = word.toCharArray();
 			String temp = "";
-			for(char c: wordChars) {
-				ch = "" + c;
-				if(ch.matches("[a-zA-Z]"))
-					temp += c;
+			for(int i = 0; i < wordChars.length; i++) {
+				ch = "" + wordChars[i];
+				//the below expression uses regex to remove all non-alphabetic characters
+				//the second half of the condition allows heifenated words to be added
+				//while still taking out dashes that only act as punctuation
+				if(ch.matches("[a-zA-Z']") || ((ch.equals("-") && i + 1 != wordChars.length && 
+					i != 0 && '-' != wordChars[i - 1])))
+					temp += wordChars[i];
 			}
 			
 			word = temp.toUpperCase();
