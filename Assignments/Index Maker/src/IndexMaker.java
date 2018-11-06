@@ -27,8 +27,6 @@ import java.util.Set;
  * 
  * 
  * @author AnneMarie Caballero
- * @see IndexEntry
- * @see DocumentIndex
  */
 public class IndexMaker {
 
