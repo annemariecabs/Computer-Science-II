@@ -3,8 +3,9 @@ import java.util.TreeMap;
 
 /**
  * The DocumentIndex is used to hold an index created for a document. The class has one field
- * a TreeMap<String, IndexEntry> which holds the index entries created for the document. 
- * The key value for the TreeMap is the word that the corresponding IndexEntry has. 
+ * a TreeMap, which has a String key mapped to an IndexntryValue and which holds the index 
+ * entries created for the document. The key value for the TreeMap is the word that the 
+ * corresponding IndexEntry holds. 
  * 
  * The class has one constructor, which only initializes a new TreeMap. It has two main functionalities:
  * addWord and addAllWords. The addWord method takes a String and checks if a String has been used 
@@ -24,20 +25,20 @@ import java.util.TreeMap;
  * 
  * 
  * @author AnneMarie Caballero
- * @see IndexEntry, IndexMaker
+ * @see IndexEntry IndexMaker
  */
 
 public class DocumentIndex {
 	
 	/**
-	 * A TreeMap<String, IndexEntry> that acts as the index for the document. The word 
-	 * of the IndexEntry acts as the key to find the IndexEntry.
+	 * A TreeMap with a String key mapped on to an Index Entry value that acts as the index 
+	 * for the document. The word of the IndexEntry acts as the key to find the IndexEntry.
 	 */
 	private TreeMap<String, IndexEntry> index;
 	
 	/**
 	 * Constructs a DocumentIndex by initializing the index field to a default
-	 * TreeMap<String, IndexEntry>
+	 * TreeMap
 	 */
 	public DocumentIndex() {
 		index = new TreeMap<String, IndexEntry>();
@@ -78,7 +79,7 @@ public class DocumentIndex {
 	 * 
 	 * @param word the word to be added
 	 * @param num the line number the word was found on
-	 * @see addAllWords() 
+	 * @see #addAllWords(String str, int num)
 	 */
 	public void addWord(String word, int num) {
 		IndexEntry temp;
@@ -102,7 +103,7 @@ public class DocumentIndex {
 	 * This method adds all words in a given String to the index. The method is intended
 	 * to take a line of a document and add all of the new words on the line to the index
 	 * and add the number of the line to the TreeSet of line numbers for words already in the index.
-	 * The method uses the {@link addWord()} method of this class to do so. Words when added
+	 * The method uses the {@link #addWord(String word, int num)} method of this class to do so. Words when added
 	 * to the index are formatted as uppercase. The method utilizes regex to ensure that 
 	 * words do not include numbers or unnecessary punctuation.
 	 * 

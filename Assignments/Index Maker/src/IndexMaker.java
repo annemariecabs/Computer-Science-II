@@ -10,7 +10,7 @@ import java.util.Set;
 
 /**
  * This class reads an input file and writes to an output file an index of that input file
- * using the IndexEntry and DocumentIndex class. If the class is provided both the input and
+ * using the IndexEntry and DocumentIndex classes. If the class is provided both the input and
  * output file as arguments, it will utilize them as given. However, if the class is provided
  * only the input file as an argument, it will generate an output file with a name that takes
  * the input file's name and adds Index before the extension e.g. input file "hello.txt" would
@@ -27,7 +27,7 @@ import java.util.Set;
  * 
  * 
  * @author AnneMarie Caballero
- * @see DocumentIndex, IndexEntry
+ * @see DocumentIndex IndexEntry
  *
  */
 public class IndexMaker {

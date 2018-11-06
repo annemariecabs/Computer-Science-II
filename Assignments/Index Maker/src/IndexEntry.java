@@ -13,7 +13,7 @@ import java.util.TreeSet;
  * and externally, the word is formatted in all uppercase.
  * 
  * @author AnneMarie Caballero
- * @see DocumentIndex, IndexMaker
+ * @see DocumentIndex IndexMaker
  *
  */
 
