@@ -3,7 +3,7 @@ import java.util.TreeMap;
 
 /**
  * The DocumentIndex is used to hold an index created for a document. The class has one field
- * a TreeMap, which has a String key mapped to an IndexEntryValue and which holds the index 
+ * a TreeMap, which has a String key mapped to an IndexEntry value and which holds the index 
  * entries created for the document. The key value for the TreeMap is the word that the 
  * corresponding IndexEntry holds. 
  * 
