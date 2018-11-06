@@ -38,7 +38,7 @@ public class IndexMaker {
 	 * to provide both the input and output file name. The main method then calls the 
 	 * createIndex and writeIndexToFile methods.
 	 * 
-	 * @param args The run arguments provided.
+	 * @param args run arguments provided in a String[]
 	 */
 	public static void main(String[] args) {
 		Scanner keyboard = new Scanner(System.in);

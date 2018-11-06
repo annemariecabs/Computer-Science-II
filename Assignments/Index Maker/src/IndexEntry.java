@@ -5,7 +5,7 @@ import java.util.TreeSet;
  * word and lineNumbers. The first field represents the word in the IndexEntry, and the second
  * field represents the number of lines that word appeared on. 
  * 
- * The main functionalitiy of this class beside the standard getters and toString() is the add() 
+ * The main functionality of this class beside the standard getters and toString() is the add() 
  * method which allows numbers to be added to the TreeSet lineNumbers. There are getters for 
  * both fields, and a toString which formats the IndexEntry's corresponding String value as
  * "HELLO 1, 7, 9" if the word hello appeared on certain lines in a document, although this class

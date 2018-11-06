@@ -120,7 +120,7 @@ public class DocumentIndex {
 			for(int i = 0; i < wordChars.length; i++) {
 				ch = "" + wordChars[i];
 				//the below expression uses regex to remove all non-alphabetic characters
-				//the second half of the condition allows heifenated words to be added
+				//the second half of the condition allows hyphenated words to be added
 				//while still taking out dashes that only act as punctuation
 				if(ch.matches("[a-zA-Z']") || ((ch.equals("-") && i + 1 != wordChars.length && 
 					i != 0 && '-' != wordChars[i - 1])))
