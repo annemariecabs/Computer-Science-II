@@ -25,7 +25,7 @@ import java.util.TreeMap;
  * 
  * 
  * @author AnneMarie Caballero
- * @see IndexEntry IndexMaker
+ * @see IndexMaker
  */
 
 public class DocumentIndex {
