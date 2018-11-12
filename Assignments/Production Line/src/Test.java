@@ -21,7 +21,8 @@ public class Test {
 		
 		
 		while(temp != null) {
-			System.out.print(temp);
+			System.out.println(temp);
+			System.out.println("******\n"); //how I separate my towers
 			
 			temp = line.removeTower();
 		}

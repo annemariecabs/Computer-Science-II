@@ -15,40 +15,35 @@ public class Tower extends Stack<Disk> {
 		super();
 	}
 	
-	//TODO: Should this just be what's on top, considering it's a stack
-	//TODO: Should it print from top to bottom or bottom to top
-	//TODO: just which way should it print ***IMPORTANT***
 	public String toString() {
-		Iterator<Disk> iter = this.iterator();
-		ArrayList<String> temp = new ArrayList<String>();
+		Tower copy = new Tower();
+		String temp = "";
+		Disk disk;
 		
-		while(iter.hasNext()) {
-			temp.add(iter.next().toString());
+		while(! this.empty()) {
+			disk = this.pop();
+			copy.push(disk);
+			for(int i = 0; i < Integer.parseInt(disk.toString()); i++) {
+				temp +=  "-";
+			}
+			
+			temp += "\n";
 		}
 		
-		Collections.reverse(temp);
-		
-		return temp.toString();
-		
-		/* what i had before when it printed top to bottom
-		 Iterator<Disk> iter = this.iterator();
-		String temp = "[";
-		
-		while(iter.hasNext()) {
-			temp += iter.next().toString() + ", ";
+		Collections.reverse(copy);
+		while(! copy.empty()) {
+			disk = copy.pop();
+			this.push(disk);
 		}
 		
-		temp = temp.substring(0, temp.length() - 2) + "]";
-		
-		return temp; 
-		 * 
-		 */
+		return temp;
 	}
 	
 	//TODO: is it bad to re-instantiate here - not going to lie this seems inefficient
 	// no copy constructor though - could make a private one
 	//TODO: should it return the flipped version or just flip it - would get rid of problem
 	//TODO: I did the above but may want to reverse it
+	//TODO: I destroy my tower is that okay?
 	public Tower flip() {
 		Tower temp = new Tower();
 		

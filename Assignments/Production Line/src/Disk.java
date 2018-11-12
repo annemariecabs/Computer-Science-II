@@ -17,7 +17,6 @@ public class Disk implements Comparable<Disk> {
 		return radius - o.radius;
 	}
 	
-	//TODO: should this be my toString
 	public String toString() {
 		return "" + radius;
 	}
