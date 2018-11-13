@@ -67,9 +67,56 @@ public class Kitten extends Actor
    */
   public void readMail()
   {
-    _______________________________________
-    ...
-  }
+	Message msg;
+	String msgTxt;
+	int spacePos;
+	String request;
+	String item;
+	ArrayList<String> missing = new ArrayList<String>();
+	  
+    for(String i: items) {
+    	if(! myPossessions.contains(i)) {
+    		super.send(null, "need " + i);
+    		missing.add(i);
+    	}	
+    }
+    
+    while(this.moreMail()) {
+    	msg = readNextMessage();
+    	
+    	if(msg == null)
+    		break;
+    	
+    	msgTxt = msg.getText();
+    	spacePos = msgTxt.indexOf(" ");
+    	
+    	request = msgTxt.substring(0, spacePos);
+    	item = msgTxt.substring(spacePos + 1);
+    	
+    	switch(request) {
+    	
+    	case "need":
+    		if(countPossessions(item) > 1)
+    			super.send(msg.getRecipient(), "have " + item);
+    		break;
+    	case "have":
+    		if(missing.contains(item))
+    			super.send(msg.getRecipient(), "ship " + item);
+    		break;
+    	case "ship":
+    		if(countPossessions(item) > 1)
+    			if(((Kitten) msg.getSender()).receiveItem(this, item))
+					myPossessions.remove(item);
+    	
+    		break;
+    	}
+    	
+    	if(allSetFlag == false && allSet()) {
+    		this.send(null, "thx, all set");
+    	}
+    	
+    }
+   }
 
   public String toString()
   {
