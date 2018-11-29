@@ -1,1 +1,1 @@
-typeSearchIndex = [{"p":"<Unnamed>","l":"DocumentIndex"},{"p":"<Unnamed>","l":"IndexEntry"},{"p":"<Unnamed>","l":"IndexMaker"}]
+typeSearchIndex = [{"p":"<Unnamed>","l":"Disk"},{"p":"<Unnamed>","l":"ProductionLine"},{"p":"<Unnamed>","l":"Tower"}]

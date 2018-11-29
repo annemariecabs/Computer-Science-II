@@ -1,0 +1,6 @@
+Our challenge for this 
+was to write a script 
+with two people a and b
+and the first line starts out with ten words
+the second nine and so on
+that is the challenge

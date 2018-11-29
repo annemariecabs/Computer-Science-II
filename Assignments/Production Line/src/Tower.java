@@ -1,20 +1,44 @@
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Stack;
 
 /**
+ * The Tower class is a subclass of Stack<Disk>. It has one constructor
+ * which calls the superclass's constructor. Its two main functionalities in 
+ * addition to the pop(), peek(), push(), and isEmpty() methods of a Stack are 
+ * toString(), which prints the each disk in the tower as a line of dashes (number
+ * of dashes equals radius of disk of tower being printed. The second functionality is 
+ * flip(), which returns the flipped version of this tower. In order to do so,
+ * it does destroy the current tower. However, for the purposes of ProductionLine
+ * the Tower is never needed after the flip() method is used, so there is no need
+ * to preserve the Tower.
  * 
- * @author annemariecaballero
+ * @author AnneMarie Caballero
  *
  */
 
 public class Tower extends Stack<Disk> {
 	
+	/**
+	 * The default constructor for a tower which calls on a Stack's super 
+	 * constructor (creates an empty Stack of Disks)
+	 */
 	public Tower() {
 		super();
 	}
 	
+	/**
+	 * Returns a String representation of a Tower. The String representation
+	 * will have a line of dashes to represent each Disk. For example, a Tower
+	 * with Disks of radii 3, 4, 7, and 8 in order would have the String 
+	 * representation of: 
+	 * --- (3)
+	 * ---- (4)
+	 * ------- (7)
+	 * -------- (8)
+	 * 
+	 * @return a String with lines of dashes, each line representing a Disk in
+	 * 		the tower, the top Disk will be the first line.
+	 */
 	public String toString() {
 		Tower copy = new Tower();
 		String temp = "";
@@ -27,7 +51,7 @@ public class Tower extends Stack<Disk> {
 				temp +=  "-";
 			}
 			
-			temp += "\n";
+			temp += " (" + disk.toString() + ")\n";
 		}
 		
 		Collections.reverse(copy);
@@ -39,11 +63,13 @@ public class Tower extends Stack<Disk> {
 		return temp;
 	}
 	
-	//TODO: is it bad to re-instantiate here - not going to lie this seems inefficient
-	// no copy constructor though - could make a private one
-	//TODO: should it return the flipped version or just flip it - would get rid of problem
-	//TODO: I did the above but may want to reverse it
-	//TODO: I destroy my tower is that okay?
+	/**
+	 * Returns a flipped version of this Tower. For example, if this Tower had 
+	 * Disks of 7, 6, 5, and 3 radii in order. The flipped version of that Tower 
+	 * would be Disks with radii of 3, 5, 6, and 7.
+	 * 
+	 * @return a Tower that is a flipped version of this Tower
+	 */
 	public Tower flip() {
 		Tower temp = new Tower();
 		

@@ -97,11 +97,11 @@ public class Kitten extends Actor
     	
     	case "need":
     		if(countPossessions(item) > 1)
-    			super.send(msg.getRecipient(), "have " + item);
+    			super.send(msg.getSender(), "have " + item);
     		break;
     	case "have":
     		if(missing.contains(item))
-    			super.send(msg.getRecipient(), "ship " + item);
+    			super.send(msg.getSender(), "ship " + item);
     		break;
     	case "ship":
     		if(countPossessions(item) > 1)
@@ -111,7 +111,7 @@ public class Kitten extends Actor
     		break;
     	}
     	
-    	if(allSetFlag == false && allSet()) {
+    	if(! allSetFlag && allSet()) {
     		this.send(null, "thx, all set");
     	}
     	
