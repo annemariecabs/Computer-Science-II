@@ -1,6 +1,9 @@
 /**
+ * A Disk represents a disk and has one field, radius. Disk has one Constructor, which takes a given radius and creates a 
+ * Disk with that radius. It also has a compareTo() method, which compares Disks based on their radii. It also has a toString(),
+ * which returns the String representation of a Disk, which for this class is the Disk's radius.
  * 
- * @author AnneMarie Caballero
+ * @author AnneMarie Caballero (<a href="https://github.com/annemariecabs">annemariecabs</a>)
  *
  */
 

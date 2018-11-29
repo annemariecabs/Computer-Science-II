@@ -2,7 +2,7 @@ import java.util.Collections;
 import java.util.Stack;
 
 /**
- * The Tower class is a subclass of Stack<Disk>. It has one constructor
+ * The Tower class is a Stack of Disks. It has one constructor
  * which calls the superclass's constructor. Its two main functionalities in 
  * addition to the pop(), peek(), push(), and isEmpty() methods of a Stack are 
  * toString(), which prints the each disk in the tower as a line of dashes (number
@@ -12,7 +12,7 @@ import java.util.Stack;
  * the Tower is never needed after the flip() method is used, so there is no need
  * to preserve the Tower.
  * 
- * @author AnneMarie Caballero
+ * @author AnneMarie Caballero (<a href="https://github.com/annemariecabs">annemariecabs</a>)
  *
  */
 

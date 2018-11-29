@@ -5,13 +5,13 @@ import java.util.Queue;
 /**
  * ProductionLine represents an assembly line. Disks are fed as a Queue into a robot arm. The robot arm will then create
  * upside-down pyramids and then flip them onto the output line, so that the output queue is a series of pyramids
- * built from the Disks input into the robot arm. The input and output are a Queue<Disk> and a Queue<Tower> respectively.
+ * built from the Disks input into the robot arm. The input and output are a Queue of Disks and a Queue of Towers respectively.
  * The robot arm is a Tower. The class has one constructor, which initializes the fields as empty.The method then has four 
  * functionalities: addDisk (this adds a disk to the input), unloadRobot (flips the current Tower in robot arm, puts it on
  * output, and clears the robot arm), process (processes through input line creating pyramids and adding them to the output), 
  * and removeTower (which removes a Tower from the output).
  * 
- * @author AnneMarie Caballero (<a href="https://github.com/annemariecabs">annemariecabs<a>)
+ * @author AnneMarie Caballero (<a href="https://github.com/annemariecabs">annemariecabs</a>)
  *
  */
 
