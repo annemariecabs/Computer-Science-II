@@ -3,7 +3,7 @@ import java.util.Queue;
 
 /**
  * This is a test class for Assignment #4: ProductionLine. It tests ProductionLine
- * with pre-created inputs.
+ * with pre-created inputs. Mostly checking for special cases.
  * 
  * @author AnneMarie Caballero
  */
@@ -12,6 +12,7 @@ public class CannedTest {
 	
 	public static final String PARTITION = "******\n";
 	
+	//processes through a ProductionLine with a given input - trying to avoid redundancy
 	public static String processInput(Queue<Disk> disks) {
 		ProductionLine line = new ProductionLine();
 		Tower temp;
@@ -36,6 +37,8 @@ public class CannedTest {
 		return check;
 	}
 	
+	
+	//tests ProductionLine if no disks are added
 	public static void emptyTest() {
 		String check = processInput(new LinkedList<Disk>());
 		String correctAnswer = PARTITION;
@@ -67,6 +70,7 @@ public class CannedTest {
 			System.out.println("Failure");
 	}
 	
+	//tests ProductionLine with standard input
 	public static void typicalTest() {
 		Queue<Disk> typical = new LinkedList<Disk>();
 		typical.add(new Disk(1));
@@ -113,6 +117,7 @@ public class CannedTest {
 		
 	}
 	
+	//tests ProducitonLine with disks with the same radii
 	public static void sameRadiusDiskTest() {
 		Queue<Disk> disks = new LinkedList<Disk>();
 		Tower correct = new Tower();
@@ -132,6 +137,7 @@ public class CannedTest {
 			System.out.println("Failure");
 	}
 	
+	//tests if Disks can be created with invalid radii 
 	public static void invalidRadiiTest() {
 		Disk temp;
 		

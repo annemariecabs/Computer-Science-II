@@ -31,10 +31,10 @@ public class Tower extends Stack<Disk> {
 	 * will have a line of dashes to represent each Disk. For example, a Tower
 	 * with Disks of radii 3, 4, 7, and 8 in order would have the String 
 	 * representation of: 
-	 * --- (3)
-	 * ---- (4)
-	 * ------- (7)
-	 * -------- (8)
+	 * <p> --- (3)
+	 * <p> ---- (4)
+	 * <p> ------- (7)
+	 * <p> -------- (8)
 	 * 
 	 * @return a String with lines of dashes, each line representing a Disk in
 	 * 		the tower, the top Disk will be the first line.
