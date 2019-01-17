@@ -1,0 +1,24 @@
+ughghg.txt	11	4, 7, 8, 3, 2
+
+7 pound watermelon
+4 pound watermelon
+
+
+watermelons02.txt	85	30, 35, 40, 50, 25, 10, 13
+
+50 pound watermelon
+
+
+watermelons03.txt	25	30, 50, 40
+
+No possible watermelons
+
+
+oof.txt	85	70, 10, 60, 65, 15, 20
+
+15 pound watermelon
+70 pound watermelon
+
+
+idontexist.txt	This file does not exist.
+
