@@ -3,5 +3,8 @@ watermelons02.txt
 watermelons03.txt
 watermelons04.txt
 formattedwrong.txt
+
 idontexist.txt
 empty.txt
+same.txt
+comma.txt

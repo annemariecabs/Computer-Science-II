@@ -62,7 +62,7 @@ public class Knapsack {
 	/**
 	 * The message shown when a test file does not exist.
 	 */
-	private static final String FILE_DOES_NOT_EXIST_MESSAGE = "\tThis file does not exist.\n\n\"";
+	private static final String FILE_DOES_NOT_EXIST_MESSAGE = "\tThis file does not exist.\n\n";
 	
 	
 	/**
@@ -177,12 +177,12 @@ public class Knapsack {
 			try {
 				nums = readItemsFromFile(test);
 			} catch (FileNotFoundException e) {
-				output.print(test + FILE_DOES_NOT_EXIST_MESSAGE);
+				output.println(test + FILE_DOES_NOT_EXIST_MESSAGE);
 				continue;
 			}
 			
 			if(nums.length == 0) {
-				output.print(test + NO_INTEGERS_MESSAGE);
+				output.println(test + NO_INTEGERS_MESSAGE);
 				continue;
 			}
 			
@@ -241,10 +241,10 @@ public class Knapsack {
 	 * 		weights provided without overloading the knapsack
 	 */
 	public static int knapsackSum(int[] w, int n, int limit, List<Integer> list) {
-		int added, notAdded;
+		int added, notAdded, sum;
 		ArrayList<Integer> addedList = new ArrayList<Integer>(), notAddedList = new ArrayList<Integer>();
 		
-		if(n <= 0 || limit <= 0)
+		if(n <= 0 )
 			return 0;
 		else if(w[n - 1] <= limit) {
 			addedList.add(w[n - 1]);
@@ -265,9 +265,15 @@ public class Knapsack {
 				return notAdded;	
 			}
 		}
-		else
-			return knapsackSum(w, n - 1, limit, addedList);
+		else {
+			sum =  knapsackSum(w, n - 1, limit, notAddedList);
 			
+			for(Integer i: notAddedList) {
+				list.add(i);
+			}
+			
+			return sum;
+		}	
 	}
 	
 	/**
@@ -290,6 +296,11 @@ public class Knapsack {
 		Path path = file.toPath();
 		
 		lines = (ArrayList<String>) Files.readAllLines(path);
+		
+		//below method ensures that empty lines are not left in
+		for(int i = 0; i < lines.size(); i++)
+			if(EMPTY_STRING.equals(lines.get(i)))
+				lines.remove(i);
 		
 		return lines;
 	}
@@ -332,11 +343,13 @@ public class Knapsack {
 		
 		String wFormatted = EMPTY_STRING;
 		
-		for(int i: w) {
-			wFormatted += i + COMMA + SPACE;
+		if(w.length != 0 ) {
+			for(int i: w) {
+				wFormatted += i + COMMA + SPACE;
+			}
+			
+			wFormatted = wFormatted.substring(0, wFormatted.length() - 2);
 		}
-		
-		wFormatted = wFormatted.substring(0, wFormatted.length() - 2);
 		
 		output.println(fileName + TAB + limit + TAB
 				+ wFormatted + NEW_LINE);
