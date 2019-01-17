@@ -30,6 +30,83 @@ public class Knapsack {
 	private static final String OUTPUT_NAME = "knapsack.txt";
 	
 	/**
+	 * A typed phrase used if the user wants to exit the program rather than
+	 * inputting information.
+	 */
+	private static final String EXIT_PHRASE = "exit";
+	
+	/**
+	 * The number used as a parameter for System.exit() if the program has
+	 * to quit early due to difficulties during runtime.
+	 */
+	private static final int ERROR_CODE = 1;
+	
+	/**
+	 * The message used if the file with the names of test files is not found.
+	 */
+	private static final String TESTS_FILE_NOT_FOUND_MESSAGE = "Please provide an existing file with the names of files to test in it."
+			+ " (type exit if you wish to leave this program).";
+	
+	/**
+	 * The error message used if a PrintWriter throws a FileNotFoundException
+	 */
+	private static final String PRINTWRITER_ERROR_MESSAGE = "Error: knapsack.txt does not exist yet and cannot be created.";
+	
+	/**
+	 * The message shown if the program encounters an IOException when reading String arrays from files
+	 */
+	private static final String IOEXCEPTION_MESSAGE = "The system has encountered an IOException when reading the test files"
+			+ "Please enter the names of the files you would like to test separated by spaces"
+			+ "(type exit to exit the program)";
+	
+	/**
+	 * The message shown when a test file does not exist.
+	 */
+	private static final String FILE_DOES_NOT_EXIST_MESSAGE = "\tThis file does not exist.\n\n\"";
+	
+	
+	/**
+	 * The message shown when the file does not contain integers in the proper format.
+	 */
+	private static final String NO_INTEGERS_MESSAGE = "\tThis file does not contain integers.\n\n";
+	
+	/**
+	 * The message shown when there is no possible combination that is under the limit.
+	 */
+	private static final String NO_POSSIBILITIES_MESSAGE = "No possible watermelons";
+	
+	/**
+	 * Printed after every watermelon weight that gets added to the knapsack
+	 * in knapsack.txt.
+	 */ 
+	private static final String UNIT = " pound watermelon";
+	
+	/**
+	 * A space.
+	 */
+	private static final String SPACE = " ";
+	
+	/**
+	 * A tab.
+	 */
+	private static final String TAB = "\t";
+	
+	/**
+	 * A new-line character.
+	 */
+	private static final String NEW_LINE = "\n";
+	
+	/**
+	 * A comma.
+	 */
+	private static final String COMMA = ",";
+	
+	/**
+	 * Empty string.
+	 */
+	private static final String EMPTY_STRING = "";
+	
+	/**
 	 * A PrintWriter field to write to the output file, which will be used in the main and other methods.
 	 */
 	private static PrintWriter output;
@@ -49,14 +126,13 @@ public class Knapsack {
 		keyboard = new Scanner(System.in);
 		File testFile;
 		
-		if(args.length == 0) {
+		if(args.length == 0 || ! (new File(args[0]).exists())) {
 			do {
-				System.out.println("Please provide an existing file with the names of files to test in it."
-						+ " (type exit if you wish to leave this program).");
+				System.out.println(TESTS_FILE_NOT_FOUND_MESSAGE);
 				fileWithTests = keyboard.nextLine();
 				
-				if(fileWithTests.equals("exit")) {
-					System.exit(1);
+				if(fileWithTests.equals(EXIT_PHRASE)) {
+					System.exit(ERROR_CODE);
 				}
 					
 				testFile = new File(fileWithTests);
@@ -65,7 +141,24 @@ public class Knapsack {
 		else
 			fileWithTests = args[0];
 		
-		ArrayList<String> tests = readFileWithStringArray(fileWithTests);
+		ArrayList<String> tests = new ArrayList<String>();
+		
+		try {
+			tests = readFileWithStringArray(fileWithTests);
+		} catch (IOException e2) {
+			String userInput;
+			System.out.println(IOEXCEPTION_MESSAGE);
+			
+			userInput = keyboard.nextLine();
+			
+			if(userInput.equals(EXIT_PHRASE))
+				System.exit(ERROR_CODE);
+			else {
+				
+				for(String temp: userInput.split(SPACE))
+					tests.add(temp);
+			}	
+		}
 		
 		Integer[] nums;
 		int limit;
@@ -75,8 +168,8 @@ public class Knapsack {
 		try {
 			output = new PrintWriter(OUTPUT_NAME);
 		} catch (FileNotFoundException e1) {
-			// TODO Figure out what to do with this error- It should never throw it bc worst case scenario it just creates a knapsack
-			e1.printStackTrace();
+			System.out.println(PRINTWRITER_ERROR_MESSAGE);
+			System.exit(ERROR_CODE);
 		}
 		
 		for(String test: tests) {
@@ -84,12 +177,12 @@ public class Knapsack {
 			try {
 				nums = readItemsFromFile(test);
 			} catch (FileNotFoundException e) {
-				output.print(test + "\tThis file does not exist.\n\n");
+				output.print(test + FILE_DOES_NOT_EXIST_MESSAGE);
 				continue;
 			}
 			
 			if(nums.length == 0) {
-				output.print(test + "\tThis file does not contain numbers. \n\n");
+				output.print(test + NO_INTEGERS_MESSAGE);
 				continue;
 			}
 			
@@ -184,8 +277,9 @@ public class Knapsack {
 	 * @param inputName the file to read the String array from
 	 * @return an empty String array if the file does not exist or has no text, or
 	 * 		a String array with the lines of the corresponding file to inputNam
+	 * @throws IOException if an error occurs during the Files.readAllLines(path) method
 	 */
-	private static ArrayList<String> readFileWithStringArray (String inputName) {
+	private static ArrayList<String> readFileWithStringArray (String inputName) throws IOException {
 		
 		ArrayList<String> lines = new ArrayList<String>();
 		File file = new File(inputName);
@@ -195,13 +289,7 @@ public class Knapsack {
 				
 		Path path = file.toPath();
 		
-		try {
-			lines = (ArrayList<String>) Files.readAllLines(path);
-		} catch (IOException e) {
-			// TODO Change this catch block to a System.exit and an explanation
-			//or let it keep going and print an acceptable explanation to knapsack.txt
-			e.printStackTrace();
-		}
+		lines = (ArrayList<String>) Files.readAllLines(path);
 		
 		return lines;
 	}
@@ -242,29 +330,29 @@ public class Knapsack {
 	 */
 	private static void writeTestToFile(String fileName, int limit, int[] w) {
 		
-		String wFormatted = "";
+		String wFormatted = EMPTY_STRING;
 		
 		for(int i: w) {
-			wFormatted += i + ", ";
+			wFormatted += i + COMMA + SPACE;
 		}
 		
 		wFormatted = wFormatted.substring(0, wFormatted.length() - 2);
 		
-		output.println(fileName + "\t" + limit + "\t"
-				+ wFormatted + "\n");
+		output.println(fileName + TAB + limit + TAB
+				+ wFormatted + NEW_LINE);
 		
 		watermelons = new ArrayList<Integer>();
 		
 		knapsackSum(w, w.length, limit, watermelons);
 		
 		if(watermelons.isEmpty())
-			output.println("No possible watermelons");
+			output.println(NO_POSSIBILITIES_MESSAGE);
 		else
 			for(Integer watermelonWeight: watermelons) {
-				output.println(watermelonWeight + " pound watermelon");
+				output.println(watermelonWeight + UNIT);
 			}
 			
-		output.print("\n\n");
+		output.print(NEW_LINE + NEW_LINE);
 		
 	}
 }

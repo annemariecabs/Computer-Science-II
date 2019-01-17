@@ -1,7 +1,9 @@
-ughghg.txt	11	4, 7, 8, 3, 2
+watermelons01.txt	132	2, 17, 5, 3
 
-7 pound watermelon
-4 pound watermelon
+3 pound watermelon
+5 pound watermelon
+17 pound watermelon
+2 pound watermelon
 
 
 watermelons02.txt	85	30, 35, 40, 50, 25, 10, 13
@@ -14,11 +16,19 @@ watermelons03.txt	25	30, 50, 40
 No possible watermelons
 
 
-oof.txt	85	70, 10, 60, 65, 15, 20
+watermelons04.txt	85	70, 10, 60, 65, 15, 20
 
 15 pound watermelon
 70 pound watermelon
 
 
+formattedwrong.txt	11	4, 7, 8, 3, 2
+
+7 pound watermelon
+4 pound watermelon
+
+
 idontexist.txt	This file does not exist.
+
+"empty.txt	This file does not contain numbers.
 
