@@ -1,1 +1,1 @@
-typeSearchIndex = [{"p":"<Unnamed>","l":"Knapsack"}]
+typeSearchIndex = [{"p":"<Unnamed>","l":"Expressions"},{"p":"<Unnamed>","l":"ExpressionTree"},{"p":"<Unnamed>","l":"ExpressionTreeTest"},{"p":"<Unnamed>","l":"TreeNode"}]
