@@ -10,7 +10,7 @@ import java.util.Stack;
  * evalTree, toPrefixNotation, toInfixNotation, and toPostfixNotation. 
  * 
  * @author AnneMarie Caballero (<a href="https://github.com/annemariecabs">annemariecabs</a>)
- * @see <a href=https://annemariecabs.github.io/Computer-Science-II/Javadocs/TreeNode.html>TreeNode</a>
+ * @see <a href="https://annemariecabs.github.io/Computer-Science-II/Javadocs/TreeNode.html">TreeNode</a>
  */
 
 public class ExpressionTree extends TreeNode implements Expressions {
