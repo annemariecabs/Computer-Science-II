@@ -1,0 +1,9 @@
+         
+        x
+        o
+  x x xoo
+  x xoxo 
+  x xox o
+oooooooo 
+oooooooox
+ooooooooo
