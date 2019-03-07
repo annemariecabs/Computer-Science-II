@@ -1,6 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -67,6 +70,11 @@ public class TTT_HC {
 	private static final int NUMBER_OF_WINNERS = 1400;
 	
 	/**
+	 * Length of the winner array
+	 */
+	private static final int ARRAY_SIZE = 220;
+	
+	/**
 	 * This creates a TTT_HC by instantiating and filling the winners array of HashNodes
 	 * which should hold all of the winning Strings at their proper hash code
 	 * index. If there is already a HashNode at that index, the constructor
@@ -77,7 +85,7 @@ public class TTT_HC {
 	 * @param boardTitle the title of the board 
 	 */
 	TTT_HC() {
-		winners = new HashNode[700]; 
+		winners = new HashNode[ARRAY_SIZE]; 
 
 		Scanner winReader = null;
 
@@ -133,7 +141,7 @@ public class TTT_HC {
 			power++;
 		}
 
-		return sum % (int) (700);
+		return sum % ARRAY_SIZE;
 
 	}
 	
@@ -149,11 +157,14 @@ public class TTT_HC {
 	 * @param entrySpots an ArrayList of the HashNodes that are directly located
 	 * 		in winners
 	 * @param collisionSpots an ArrayList of the HashNodes where collisions occurred
+	 * @param emptySpaces the number of empty spots in the winners array
 	 */
 	public static void analyzeAndPrint(int arraySize, ArrayList<Integer> chainLengths,
-			ArrayList<HashNode> entrySpots, ArrayList<HashNode> collisionSpots) {
-
-		//TODO is this actually the right load factor
+			ArrayList<HashNode> entrySpots, ArrayList<HashNode> collisionSpots,
+			int emptySpaces) {
+		
+		NumberFormat decimal = new DecimalFormat("#0.00");
+		
 		double loadFactor = ((double) NUMBER_OF_WINNERS)/arraySize;
 
 		int chainNum = chainLengths.size(), maxChainLength = 0, sumChL = 0;
@@ -170,12 +181,12 @@ public class TTT_HC {
 			}
 		}
 
-		int avgChainLength = sumChL/chainNum;
+		double avgChainLength = sumChL/(double) chainNum;
 
 		int[] quarters = new int[4];
 		int[] tenths = new int[10];
 		
-		int currentQ = 1, currentT = 1, entriesPerQ = 0, collPerTenth = 0;
+		int currentQ = 1, currentT = 1, entriesPerQ = 0, collPerTenth = 0, entries = 0;
 
 		for(HashNode e: entrySpots) {
 			
@@ -188,45 +199,41 @@ public class TTT_HC {
 			
 			for(HashNode temp = e; temp != null; temp = temp.getNext()) {
 				entriesPerQ++;
+				entries++;
 			}
 		}
 		
 		quarters[currentQ - 1] = entriesPerQ;
+		
+		int collNum = 0;
 
 		for(HashNode c: collisionSpots) {
+			
 			if(c.getHash() >= arraySize/10.0 * currentT) {
 				tenths[currentT - 1] = collPerTenth;
 				currentT++;
 				collPerTenth = 0;
 			}
-
-			for(HashNode temp = c; temp != null; temp = temp.getNext()) {
+			
+			for(HashNode temp = c.getNext(); temp != null; temp = temp.getNext()) {
 				collPerTenth++;
+				collNum++;
 			}
 		}
 		
 		tenths[currentT - 1] = collPerTenth;
-
-
+		
+		//note: I used Matthew's method of displaying the quarters and tenths
 		System.out.print("Size of the Array: " + arraySize 
-				+ "\nLoad Factor: " + loadFactor
+				+ "\nNumber of Entries: " + entries
+				+ "\nLoad Factor: " + decimal.format(loadFactor)
 				+ "\nNumber of Chains: " + chainNum
 				+ "\nMaximum Chain Length: " + maxChainLength
-				+ "\nAverage Chain Length: " + avgChainLength
-				+ "\n\nNumber of Entries in First Quarter: " + quarters[0]
-				+ "\nNumber of Entries in Second Quarter: " + quarters[1]
-				+ "\nNumber of Entries in Third Quarter: " + quarters[2]
-				+ "\nNumber of Entries in Fourth Quarter: " + quarters[3]
-				+ "\n\nNumber of Collisions in First Tenth: " + tenths[0] 
-				+ "\nNumber of Collisions in Second Tenth: " + tenths[1]
-				+ "\nNumber of Collisions in Third Tenth: " + tenths[2]
-				+ "\nNumber of Collisions in Fourth Tenth: " + tenths[3]
-				+ "\nNumber of Collisions in Fifth Tenth: " + tenths[4]
-				+ "\nNumber of Collisions in Sixth Tenth: " + tenths[5]
-				+ "\nNumber of Collisions in Seventh Tenth: " + tenths[6]
-				+ "\nNumber of Collisions in Eighth Tenth: " + tenths[7]
-				+ "\nNumber of Collisions in Ninth Tenth: " + tenths[8] 
-				+ "\nNumber of Collisions in Tenth Tenth: " + tenths[9]);
+				+ "\nAverage Chain Length: " + decimal.format(avgChainLength)
+				+ "\nEntries per Quarter: " + Arrays.toString(quarters)
+				+ "\nNumber of Collisions: " + collNum
+				+ "\nCollisions per Tenth: " + Arrays.toString(tenths)
+				+ "\nNumber of Empty Spaces: " + emptySpaces);
 
 
 	}
@@ -241,12 +248,16 @@ public class TTT_HC {
 		ArrayList<Integer> chainLengths = new ArrayList<Integer>();
 		ArrayList<HashNode> collSpaces = new ArrayList<HashNode>();
 		HashNode w;
+		
+		int empties = 0;
 
 		for(int i = 0; i < tttHC.winners.length; i++) {
 			w = tttHC.winners[i];
 
-			if(w == null) 
+			if(w == null) {
+				empties++;
 				continue;
+			}
 			else
 				entrySpaces.add(w);
 			
@@ -264,7 +275,7 @@ public class TTT_HC {
 
 		}
 
-		analyzeAndPrint(tttHC.winners.length, chainLengths, entrySpaces, collSpaces);
+		analyzeAndPrint(tttHC.winners.length, chainLengths, entrySpaces, collSpaces, empties);
 	}
 
 }
