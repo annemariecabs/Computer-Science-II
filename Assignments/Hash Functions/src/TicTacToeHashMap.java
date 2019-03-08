@@ -19,7 +19,8 @@ import java.util.Scanner;
  * is the type of array is not a public Java class. 
  * 
  * Note: Matthew Grillo basically made this class possible through his thorough research on the subject.
- * All adulation directed toward this class would be misdirected unless 80% wasn't directed towards him.
+ * All adulation directed toward this class would be misdirected unless 80% was directed towards him.
+ * Also, the capacity() method was mainly written by Mrs. Kelly.
  *  
  * @author AnneMarie Caballero (<a href="https://github.com/annemariecabs">annemariecabs</a>)
  *
@@ -61,7 +62,7 @@ public class TicTacToeHashMap  {
 	private static final String WINNER_FILE_NOT_FOUND = "The file with the winning TicTacToe strings is not available, which means the program must end";
 	
 	/**
-	 * Constructs a TicTacToeHashMap, which holds a HashMap<String, Boolean>. The 
+	 * Constructs a TicTacToeHashMap, which holds a HashMap with a String key and Boolean value. The 
 	 * method also initializes the HashMap using all possible winning TicTacToe Strings.
 	 * The HashMap capacity is set specifically to HASHMAP_SIZE and the load factor is 
 	 * set so that it would not be automatically resized. This method uses the Java hashCode
@@ -125,6 +126,7 @@ public class TicTacToeHashMap  {
 	/**
 	 * Uses reflection to return the next node after a HashMap.Entry in a linked list
 	 * 
+	 * @param entry a HashMap.Entry for which the next node will be found
 	 * @return the next node after a HashMap.Entry
 	 * @throws NoSuchFieldException thrown if the reflective field this method is looking for,
 	 * 		which is next, cannot be found
@@ -141,6 +143,7 @@ public class TicTacToeHashMap  {
 	/**
 	 * Uses reflection whether a HashMap.Entry in a linked list has a next node
 	 * 
+	 * @param entry a HashMap.Entry for which it will be assessed if it has a next node
 	 * @return if entry has a node after it 
 	 * @throws NoSuchFieldException thrown if the reflective field this method is looking for,
 	 * 		which is next, cannot be found
@@ -241,6 +244,7 @@ public class TicTacToeHashMap  {
 					   + "\nEntries per Quarter: " + Arrays.toString(quarters)
 					   + "\nNumber of Collisions: " + collisionCount
 					   + "\nCollisions per Tenth: " + Arrays.toString(tenths)
+					   + "\nNumber of Chains: " + chainLengths.size()
 					   + "\nMaximum Chain Length: " + maxChainLength
 					   + "\nAverage Chain Length: " + decimal.format(avgChainLength)
 					   + "\nEmpty Spaces: " + emptyCount);

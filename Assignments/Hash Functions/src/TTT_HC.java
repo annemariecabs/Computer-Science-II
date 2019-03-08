@@ -70,9 +70,12 @@ public class TTT_HC {
 	private static final int NUMBER_OF_WINNERS = 1400;
 	
 	/**
-	 * Length of the winner array
+	 * Length of the winner array. 354 was chosen because it has zero wasted spaces
+	 * in the array, and a roughly even distribution, and it is the lowest chain
+	 * length that can be achieved with zero wasted spaces, which is great in terms
+	 * of storage, but also shows concern for efficiency.
 	 */
-	private static final int ARRAY_SIZE = 220;
+	private static final int ARRAY_SIZE = 354;
 	
 	/**
 	 * This creates a TTT_HC by instantiating and filling the winners array of HashNodes
@@ -82,7 +85,6 @@ public class TTT_HC {
 	 * at that index, and setting the next HashNode to the current HashNode
 	 * located there.
 	 * 
-	 * @param boardTitle the title of the board 
 	 */
 	TTT_HC() {
 		winners = new HashNode[ARRAY_SIZE]; 
@@ -117,7 +119,8 @@ public class TTT_HC {
 	
 	/**
 	 * Returns a hash code for each winner to be stored. This hash code method will 
-	 * cause collisions because this method is focusing on being efficient with space.
+	 * cause collisions because this method is focusing on being efficient with space,
+	 * and should have no wasted spaces in the main array.
 	 * 
 	 * @param str the String to create a hash code for
 	 * @return an integer hash code for str
@@ -224,7 +227,7 @@ public class TTT_HC {
 		tenths[currentT - 1] = collPerTenth;
 		
 		//note: I used Matthew's method of displaying the quarters and tenths
-		System.out.print("Size of the Array: " + arraySize 
+		System.out.println("Size of the Array: " + arraySize 
 				+ "\nNumber of Entries: " + entries
 				+ "\nLoad Factor: " + decimal.format(loadFactor)
 				+ "\nNumber of Chains: " + chainNum

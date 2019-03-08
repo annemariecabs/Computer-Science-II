@@ -25,8 +25,9 @@ import java.util.Scanner;
  * in order for the hashCode method to be effective.
  * 
  * Note: Matthew Grillo basically made this class possible through his thorough research on the subject.
- * All adulation directed toward this class would be misdirected unless 80% wasn't directed towards him.
+ * All adulation directed toward this class would be misdirected unless 80% was directed towards him.
  * This is the same comment as the one included in TicTacToeHashMap's Javadocs
+ * Also, the capacity() method was mainly written by Mrs. Kelly.
  * 
  * @author AnneMarie Caballero (<a href="https://github.com/annemariecabs">annemariecabs</a>)
  *
@@ -70,7 +71,7 @@ public class TicTacToeMyHashMap  {
 	private static final String WINNER_FILE_NOT_FOUND = "The file with the winning TicTacToe strings is not available, which means the program must end";
 	
 	/**
-	 * Constructs a TicTacToeMyHashMap, which holds a HashMap<TTTHashString, Boolean>. The 
+	 * Constructs a TicTacToeMyHashMap, which holds a HashMap with TTTHashString key and a Boolean value. The 
 	 * method also initializes the HashMap using all possible winning TicTacToe Strings.
 	 * The HashMap capacity is set specifically to HASHMAP_SIZE and the load factor is 
 	 * set so that it would not be automatically resized. This method uses my hashCode
@@ -135,6 +136,7 @@ public class TicTacToeMyHashMap  {
 	/**
 	 * Uses reflection to return the next node after a HashMap.Entry in a linked list
 	 * 
+	 * @param entry a HashMap.Entry for which the next node will be found
 	 * @return the next node after a HashMap.Entry
 	 * @throws NoSuchFieldException thrown if the reflective field this method is looking for,
 	 * 		which is next, cannot be found
@@ -151,6 +153,7 @@ public class TicTacToeMyHashMap  {
 	/**
 	 * Uses reflection whether a HashMap.Entry in a linked list has a next node
 	 * 
+	 * @param entry a HashMap.Entry for which it will be assessed if it has a next node
 	 * @return if entry has a node after it 
 	 * @throws NoSuchFieldException thrown if the reflective field this method is looking for,
 	 * 		which is next, cannot be found
@@ -251,6 +254,7 @@ public class TicTacToeMyHashMap  {
 			   + "\nEntries per Quarter: " + Arrays.toString(quarters)
 			   + "\nNumber of Collisions: " + collisionCount
 			   + "\nCollisions per Tenth: " + Arrays.toString(tenths)
+			   + "\nNumber of Chains: " + chainLengths.size()
 			   + "\nMaximum Chain Length: " + maxChainLength
 			   + "\nAverage Chain Length: " + decimal.format(avgChainLength)
 			   + "\nEmpty Spaces: " + emptyCount);
@@ -313,7 +317,8 @@ public class TicTacToeMyHashMap  {
 		 * Returns a hash code for each winner to be stored. This hash code method will 
 		 * cause collisions because this method is focusing on being efficient with space.
 		 * This class was created in order for the hash code to be overridden, so this 
-		 * method is important.
+		 * method is important. This method is trying to balance storage and efficiency concerns, so
+		 * it tries to keep a fairly low average chain length and number of empty spaces.
 		 * 
 		 * @return an int hash code based off the hash algorithm I created
 		 */

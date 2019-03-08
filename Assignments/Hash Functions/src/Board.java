@@ -246,7 +246,6 @@ abstract class Board extends JFrame implements ActionListener {
 	 * is a winning TicTacToe String, hopefully using an array of winners 
 	 * and hash codes
 	 * 
-	 * @param s the String whose winning status should be determined
 	 * @return true, if boardString is a win, false otherwise
 	 */
 	abstract boolean isWin();

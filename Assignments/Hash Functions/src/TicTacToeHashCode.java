@@ -184,7 +184,7 @@ public class TicTacToeHashCode extends Board {
 	 * the String s, and then the corresponding index in the winners array is
 	 * returned.
 	 * 
-	 * @param a String holding the TicTacToe to be evaluated
+	 * @param s a String holding the TicTacToe to be evaluated
 	 * @return true if s is a winning TicTacToe string, false otherwise
 	 */
 	@Override
