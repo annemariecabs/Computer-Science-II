@@ -44,7 +44,7 @@ public class TicTacToe {
 	 * @param ch the char to be counted
 	 * @return the number of times ch appears on b
 	 */
-	private static int numChars(char[][] b, char ch) {
+	public static int numChars(char[][] b, char ch) {
 		int total = 0;
 		for (int r = 0; r < ROWS; r++)
 			for (int c = 0; c < COLS; c++)

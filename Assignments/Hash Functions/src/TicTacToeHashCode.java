@@ -211,12 +211,33 @@ public class TicTacToeHashCode extends Board {
 	 * and whether the String is a winner or a loser
 	 * 
 	 * @param ticTacToe the String to be evaluated and displayed
+	 * @param validity 0 means invalid generally, 1 means valid generally, 2 means valid possibility 
+	 * 		but invalid game result (all xos and os and 9 characters but not valid in 
+	 *		terms of game is resolved); if it's 0 it will say hash code is not
+	 * 		applicable (represented by -1) and the status will say invalid
+	 * 		
 	 */
-	public void displayTicTacToe(String ticTacToe) {
+	public void displayTicTacToe(String ticTacToe, int validity) {
 		setBoardString(ticTacToe);
 		show(ticTacToe);
-		setHashCodeLabel(myHashCode());
-		setWinnerLabel(winners[myHashCode()]);
+		
+		switch(validity) {
+		case 0: 
+			setHashCodeLabel(-1);
+			setWinnerLabel("Invalid");
+			break;
+		case 1:
+			setHashCodeLabel(myHashCode());
+			setWinnerLabel(winners[myHashCode()]);
+			break;
+		case 2:
+			setHashCodeLabel(myHashCode());
+			setWinnerLabel("Invalid");
+			break;
+			
+		}
+		
+		
 	}
 
 	public static void main(String[] args) throws InterruptedException {
@@ -230,8 +251,25 @@ public class TicTacToeHashCode extends Board {
 			System.exit(ERROR_CODE);
 		}
 
+		String current;
+		int v;
+		char[][] b;
+		
 		while (testReader.hasNextLine()) {
-			board.displayTicTacToe(testReader.nextLine());
+			current = testReader.nextLine();
+			b = TicTacToe.stringToBoard(current);
+			
+			if(current.toCharArray().length != 9 || 
+						(TicTacToe.numChars(b, ' ') + 
+						TicTacToe.numChars(b, 'o') +
+						TicTacToe.numChars(b, 'x')) != 9)
+				v = 0;
+			else if(TicTacToe.valid(b))
+				v = 1;
+			else
+				v = 2;
+			
+			board.displayTicTacToe(current, v);
 
 			Thread.sleep(DELAY);
 		}
