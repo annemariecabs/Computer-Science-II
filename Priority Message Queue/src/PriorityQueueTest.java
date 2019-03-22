@@ -3,7 +3,8 @@
  *  different random numbers from 0 to MAX_NUMBER for the number of messages
  *  added in each trial. A trial is a simulation where every "minute" a Message
  *  is added with a random priority from 0-4 (at a probability of .2) and 
- *  every four "minutes" a Message is removed. Then, the trial is analyzed and printed
+ *  each Message takes four "minutes" to process and can only be removed if it
+ *  is the highest priority Message . Then, the trial is analyzed and printed
  *  for several factors including: total messages, final time, average wait times
  *  per priority, number of messages per level, rate at which each priority level occurred, 
  *  and the deviation of said rate from .2. This class is attempting to assess
@@ -15,7 +16,6 @@
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class PriorityQueueTest {
 	
@@ -130,8 +130,8 @@ public class PriorityQueueTest {
 	
 	/**
 	 * Simulates a trial under the following rules: a Message is added every
-	 * minute to the priority queue and one is removed from the priority queue
-	 * every 4 minutes. Then, the data from the trial is analyzed and printed
+	 * minute to the priority queue and one is processed from the priority queue
+	 * every four minutes. Then, the data from the trial is analyzed and printed
 	 * using the analyze method.
 	 * 
 	 * @param totalMessages the number of Messages to be processed during
@@ -147,6 +147,7 @@ public class PriorityQueueTest {
 		
 		int numMessages = 0, random;
 		
+		
 		while(numMessages < totalMessages) {
 			time++;
 			
@@ -154,7 +155,7 @@ public class PriorityQueueTest {
 			queue.add(new Message(random, time));
 			numMessages++;
 			
-			if(time % TIME_TO_PROCESS == 0)
+			if(time - queue.peek().getArrivalTime() >= TIME_TO_PROCESS) 
 				process(queue.remove());
 			
 		}
@@ -163,7 +164,7 @@ public class PriorityQueueTest {
 		while(! queue.isEmpty()) {
 			time++;
 			
-			if(time % TIME_TO_PROCESS == 0)
+			if(time - queue.peek().getArrivalTime() >= TIME_TO_PROCESS)
 				process(queue.remove());
 		}
 		
