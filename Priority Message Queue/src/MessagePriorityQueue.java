@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * This class creates a priority queue using MessageQueues for each priority
  * level. The constructor initializes each MessageQueue. Otherwise, the 
@@ -7,9 +9,6 @@
  * 
  * @author AnneMarie Caballero (<a href="https://github.com/annemariecabs">annemariecabs</a>)
  */
-
-import java.util.ArrayList;
-
 public class MessagePriorityQueue {
 	
 	/**

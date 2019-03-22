@@ -1,16 +1,21 @@
-/**
- * This class creates a queue (FIFO) as a linked list using MessageListNodes.
- * The queue keeps track of its first and last node, so that the add, remove,
- * peek, and isEmpty are all O(1). The queue just has the required queue
- * functions: the constructor, add(), remove(), isEmpty() and peek().
- * 
- * @author AnneMarie Caballero (<a href="https://github.com/annemariecabs">annemariecabs</a>)
- */
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
+/**
+ *  This class tests the priority queue by running a set number of trials trials using 
+ *  different random numbers from 0 to MAX_NUMBER for the number of messages
+ *  added in each trial. A trial is a simulation where every "minute" a Message
+ *  is added with a random priority from 0-4 (at a probability of .2) and 
+ *  each Message takes four "minutes" to process and can only be removed if it
+ *  is the highest priority Message . Then, the trial is analyzed and printed
+ *  for several factors including: total messages, final time, average wait times
+ *  per priority, number of messages per level, rate at which each priority level occurred, 
+ *  and the deviation of said rate from .2. This class is attempting to assess
+ *  the efficiency of the MessagePriorityQueue created for it.
+ *  
+ * @author AnneMarie Caballero (<a href="https://github.com/annemariecabs">annemariecabs</a>)
+ */
 public class PriorityQueueTest {
 	
 	/**
