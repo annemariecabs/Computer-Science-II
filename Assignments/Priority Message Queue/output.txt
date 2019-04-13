@@ -1,0 +1,340 @@
+Trial 1
+
+Total Messages: 2278
+Final Time: 3572
+
+Average Wait Times: 
+	Priority 0: 4.00
+	Priority 1: 15.98
+	Priority 2: 1160.87
+	Priority 3: 1718.92
+	Priority 4: 2213.48
+
+Number of Messages: 
+	Priority 0: 476
+	Priority 1: 443
+	Priority 2: 456
+	Priority 3: 464
+	Priority 4: 439
+
+Rate at which Each Occurred: 
+	Priority 0: 0.21
+	Priority 1: 0.19
+	Priority 2: 0.20
+	Priority 3: 0.20
+	Priority 4: 0.19
+
+Deviation from Rate of .2: 
+	Priority 0: 0.01
+	Priority 1: 0.01
+	Priority 2: 0.00
+	Priority 3: 0.00
+	Priority 4: 0.01
+
+---------------------------------------
+Trial 2
+
+Total Messages: 4758
+Final Time: 7435
+
+Average Wait Times: 
+	Priority 0: 4.00
+	Priority 1: 15.12
+	Priority 2: 2269.26
+	Priority 3: 3703.68
+	Priority 4: 4561.26
+
+Number of Messages: 
+	Priority 0: 969
+	Priority 1: 947
+	Priority 2: 976
+	Priority 3: 922
+	Priority 4: 944
+
+Rate at which Each Occurred: 
+	Priority 0: 0.20
+	Priority 1: 0.20
+	Priority 2: 0.21
+	Priority 3: 0.19
+	Priority 4: 0.20
+
+Deviation from Rate of .2: 
+	Priority 0: 0.00
+	Priority 1: 0.00
+	Priority 2: 0.01
+	Priority 3: 0.01
+	Priority 4: 0.00
+
+---------------------------------------
+Trial 3
+
+Total Messages: 2806
+Final Time: 4373
+
+Average Wait Times: 
+	Priority 0: 4.00
+	Priority 1: 13.29
+	Priority 2: 1129.20
+	Priority 3: 2067.52
+	Priority 4: 2702.61
+
+Number of Messages: 
+	Priority 0: 531
+	Priority 1: 545
+	Priority 2: 557
+	Priority 3: 587
+	Priority 4: 586
+
+Rate at which Each Occurred: 
+	Priority 0: 0.19
+	Priority 1: 0.19
+	Priority 2: 0.20
+	Priority 3: 0.21
+	Priority 4: 0.21
+
+Deviation from Rate of .2: 
+	Priority 0: 0.01
+	Priority 1: 0.01
+	Priority 2: 0.00
+	Priority 3: 0.01
+	Priority 4: 0.01
+
+---------------------------------------
+Trial 4
+
+Total Messages: 6694
+Final Time: 10430
+
+Average Wait Times: 
+	Priority 0: 4.00
+	Priority 1: 13.98
+	Priority 2: 2904.93
+	Priority 3: 5067.18
+	Priority 4: 6444.16
+
+Number of Messages: 
+	Priority 0: 1327
+	Priority 1: 1351
+	Priority 2: 1310
+	Priority 3: 1337
+	Priority 4: 1369
+
+Rate at which Each Occurred: 
+	Priority 0: 0.20
+	Priority 1: 0.20
+	Priority 2: 0.20
+	Priority 3: 0.20
+	Priority 4: 0.20
+
+Deviation from Rate of .2: 
+	Priority 0: 0.00
+	Priority 1: 0.00
+	Priority 2: 0.00
+	Priority 3: 0.00
+	Priority 4: 0.00
+
+---------------------------------------
+Trial 5
+
+Total Messages: 6420
+Final Time: 10030
+
+Average Wait Times: 
+	Priority 0: 4.00
+	Priority 1: 19.19
+	Priority 2: 2985.20
+	Priority 3: 4835.04
+	Priority 4: 6258.78
+
+Number of Messages: 
+	Priority 0: 1271
+	Priority 1: 1309
+	Priority 2: 1270
+	Priority 3: 1303
+	Priority 4: 1267
+
+Rate at which Each Occurred: 
+	Priority 0: 0.20
+	Priority 1: 0.20
+	Priority 2: 0.20
+	Priority 3: 0.20
+	Priority 4: 0.20
+
+Deviation from Rate of .2: 
+	Priority 0: 0.00
+	Priority 1: 0.00
+	Priority 2: 0.00
+	Priority 3: 0.00
+	Priority 4: 0.00
+
+---------------------------------------
+Trial 6
+
+Total Messages: 6830
+Final Time: 10688
+
+Average Wait Times: 
+	Priority 0: 4.00
+	Priority 1: 15.27
+	Priority 2: 3265.64
+	Priority 3: 5275.74
+	Priority 4: 6615.91
+
+Number of Messages: 
+	Priority 0: 1416
+	Priority 1: 1314
+	Priority 2: 1400
+	Priority 3: 1383
+	Priority 4: 1317
+
+Rate at which Each Occurred: 
+	Priority 0: 0.21
+	Priority 1: 0.19
+	Priority 2: 0.20
+	Priority 3: 0.20
+	Priority 4: 0.19
+
+Deviation from Rate of .2: 
+	Priority 0: 0.01
+	Priority 1: 0.01
+	Priority 2: 0.00
+	Priority 3: 0.00
+	Priority 4: 0.01
+
+---------------------------------------
+Trial 7
+
+Total Messages: 6529
+Final Time: 10183
+
+Average Wait Times: 
+	Priority 0: 4.00
+	Priority 1: 18.80
+	Priority 2: 3029.24
+	Priority 3: 4978.40
+	Priority 4: 6296.30
+
+Number of Messages: 
+	Priority 0: 1370
+	Priority 1: 1276
+	Priority 2: 1268
+	Priority 3: 1305
+	Priority 4: 1310
+
+Rate at which Each Occurred: 
+	Priority 0: 0.21
+	Priority 1: 0.20
+	Priority 2: 0.19
+	Priority 3: 0.20
+	Priority 4: 0.20
+
+Deviation from Rate of .2: 
+	Priority 0: 0.01
+	Priority 1: 0.00
+	Priority 2: 0.01
+	Priority 3: 0.00
+	Priority 4: 0.00
+
+---------------------------------------
+Trial 8
+
+Total Messages: 4244
+Final Time: 6633
+
+Average Wait Times: 
+	Priority 0: 4.00
+	Priority 1: 14.57
+	Priority 2: 1935.55
+	Priority 3: 3208.86
+	Priority 4: 4062.19
+
+Number of Messages: 
+	Priority 0: 862
+	Priority 1: 814
+	Priority 2: 860
+	Priority 3: 838
+	Priority 4: 870
+
+Rate at which Each Occurred: 
+	Priority 0: 0.20
+	Priority 1: 0.19
+	Priority 2: 0.20
+	Priority 3: 0.20
+	Priority 4: 0.20
+
+Deviation from Rate of .2: 
+	Priority 0: 0.00
+	Priority 1: 0.01
+	Priority 2: 0.00
+	Priority 3: 0.00
+	Priority 4: 0.00
+
+---------------------------------------
+Trial 9
+
+Total Messages: 2621
+Final Time: 4073
+
+Average Wait Times: 
+	Priority 0: 4.00
+	Priority 1: 14.34
+	Priority 2: 1135.04
+	Priority 3: 1991.67
+	Priority 4: 2511.70
+
+Number of Messages: 
+	Priority 0: 491
+	Priority 1: 552
+	Priority 2: 529
+	Priority 3: 527
+	Priority 4: 522
+
+Rate at which Each Occurred: 
+	Priority 0: 0.19
+	Priority 1: 0.21
+	Priority 2: 0.20
+	Priority 3: 0.20
+	Priority 4: 0.20
+
+Deviation from Rate of .2: 
+	Priority 0: 0.01
+	Priority 1: 0.01
+	Priority 2: 0.00
+	Priority 3: 0.00
+	Priority 4: 0.00
+
+---------------------------------------
+Trial 10
+
+Total Messages: 4993
+Final Time: 7816
+
+Average Wait Times: 
+	Priority 0: 4.00
+	Priority 1: 14.91
+	Priority 2: 2419.51
+	Priority 3: 3791.43
+	Priority 4: 4847.59
+
+Number of Messages: 
+	Priority 0: 1022
+	Priority 1: 985
+	Priority 2: 990
+	Priority 3: 994
+	Priority 4: 1002
+
+Rate at which Each Occurred: 
+	Priority 0: 0.20
+	Priority 1: 0.20
+	Priority 2: 0.20
+	Priority 3: 0.20
+	Priority 4: 0.20
+
+Deviation from Rate of .2: 
+	Priority 0: 0.00
+	Priority 1: 0.00
+	Priority 2: 0.00
+	Priority 3: 0.00
+	Priority 4: 0.00
+
+---------------------------------------
