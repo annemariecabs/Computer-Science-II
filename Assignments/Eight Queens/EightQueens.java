@@ -121,7 +121,7 @@ public class EightQueens {
 		
 		int count = 0;
 		
-		//missing squares: one below 5, 16
+		//missing squares: one below 5
 		for(ArrayList<Queen> solution: allSolutions) {
 			count++;
 			queensAsBooleans = PictureYourSolution.queenToBooleanArray(solution);
