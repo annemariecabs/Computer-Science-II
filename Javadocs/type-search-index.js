@@ -1,1 +1,1 @@
-typeSearchIndex = [{"p":"<Unnamed>","l":"Message"},{"p":"<Unnamed>","l":"MessageListNode"},{"p":"<Unnamed>","l":"MessagePriorityQueue"},{"p":"<Unnamed>","l":"MessageQueue"},{"p":"<Unnamed>","l":"PriorityQueueTest"}]
+typeSearchIndex = [{"p":"<Unnamed>","l":"ChessSquarePanel"},{"p":"<Unnamed>","l":"EightQueens"},{"p":"<Unnamed>","l":"PictureYourSolution"},{"p":"<Unnamed>","l":"Queen"}]
